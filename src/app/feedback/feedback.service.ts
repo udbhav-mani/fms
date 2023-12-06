@@ -7,5 +7,6 @@ export class FeedbackService {
 
   get_feedbacks() {
     return this.httpClient.get('http://127.0.0.1:8000/feedback', {});
+    
   }
 }

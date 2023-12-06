@@ -8,12 +8,31 @@ import { FeedbackService } from './feedback.service';
 })
 export class FeedbackComponent {
   feedbacks: any;
+  pageNumber: number = 1;
+  isFrontDisabled: boolean = false;
+  isBackDisabled: boolean = true;
   constructor(private feedbackSer: FeedbackService) {}
 
   ngOnInit() {
     this.feedbackSer.get_feedbacks().subscribe((response) => {
-      console.log(response);
       this.feedbacks = response;
     });
+  }
+  getArray(num: string) {
+    return new Array(parseInt(num));
+  }
+  goBack() {
+    this.pageNumber--;
+    this.isFrontDisabled = false;
+    if (this.pageNumber < 2) {
+      this.isBackDisabled = true;
+    }
+  }
+  goAhead() {
+    this.pageNumber++;
+    this.isBackDisabled = false;
+    if (this.pageNumber > this.feedbacks.length / 3) {
+      this.isFrontDisabled = true;
+    }
   }
 }

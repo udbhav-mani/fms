@@ -1,10 +1,10 @@
-<div class="container rounded">
+<div class="container">
   <div class="row text-center mt-5 pt-5 mx-5">
     <p class="display-4">{{ currentMenu.date }}🗓️</p>
   </div>
   <div class="row justify-content-center pb-5">
     <div class="col-4 my-4 mx-4" *ngFor="let item of currentMenu.items">
-      <div class="p-2 py-4 rounded-pill text-center h2">
+      <div class="p-2 py-4 text-center h2 item">
         {{ item | titlecase }}
       </div>
     </div>

@@ -1,28 +1,59 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
-p {
-  font-family: "Lobster", sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Young+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
+
+.add-button {
   color: #e0e1dd;
+  background-color: rgba(17, 81, 144, 0.934);
+  max-width: 200px;
+  font-family: "Merriweather Sans", sans-serif;
+  font-size: large;
+}
+.add-button:hover {
+  transform: scale(1.06);
+}
+
+p {
+  font-family: "Teko", sans-serif;
+  color: #0d1b2a;
 }
 .container {
   color: #e0e1dd;
-  background-color: #0d1b2a;
+  background-color: rgba(172, 209, 246, 0.416);
+  border-radius: 20px;
 }
 .p-2 {
-  font-family: "Lobster", sans-serif;
-  background-color: #415a77;
+  border: #0d1b2a 2px solid;
+  font-family: "Merriweather Sans", serif;
+  background-image: linear-gradient(45deg, rgb(44, 79, 117), #6ab4f5);
+  font-size: 1.5rem;
+  border-radius: 10px;
+
+  /* background-color: #415a77;   */
 }
-.li-items {
-  background-color: #415a77;
-  font-family: "DM Serif Display", serif;
+
+.item {
+  border-radius: 20px;
 }
-.add-button {
-  font-family: "DM Serif Display", serif;
-  color: #e0e1dd;
+
+.li-items-heading {
+  font-size: 2rem;
+}
+
+.nav-button {
+  border-radius: 50%;
   background-color: #0d1b2a;
-  max-width: 200px;
-  font-size: larg;
+  color: #e0e1dd;
+  max-width: 50px;
+  max-height: 50px;
 }
-.add-button:hover {
-  transform: scale(1.1);
+
+.nav-pages {
+  display: flex;
+  margin-top: 2rem;
+  justify-content: space-evenly;
 }

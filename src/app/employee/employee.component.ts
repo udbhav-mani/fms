@@ -8,6 +8,9 @@ import { EmployeeService } from './employee.service';
 })
 export class EmployeeComponent {
   employees: any;
+  pageNumber: number = 1;
+  isFrontDisabled: boolean = false;
+  isBackDisabled: boolean = true;
   constructor(private empSer: EmployeeService) {}
 
   ngOnInit() {
@@ -15,5 +18,19 @@ export class EmployeeComponent {
       console.log(response);
       this.employees = response;
     });
+  }
+  goBack() {
+    this.pageNumber--;
+    this.isFrontDisabled = false;
+    if (this.pageNumber < 2) {
+      this.isBackDisabled = true;
+    }
+  }
+  goAhead() {
+    this.pageNumber++;
+    this.isBackDisabled = false;
+    if (this.pageNumber > this.employees.length / 3) {
+      this.isFrontDisabled = true;
+    }
   }
 }

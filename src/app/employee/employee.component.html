@@ -1,18 +1,45 @@
-<div class="container rounded pb-5">
+<div class="container pb-5">
   <div class="row text-center mt-5 p-5 mx-5">
     <p class="display-4">List of employees📃</p>
   </div>
-  <div class="p-2 m-3 row rounded justify-content-center li-items">
+  <div class="p-2 m-3 row justify-content-center li-items-heading">
     <div class="col">Username</div>
     <div class="col">Balance</div>
     <div class="col btn add-button display-3">Update group balance</div>
   </div>
   <div
-    *ngFor="let emp of employees"
-    class="p-2 m-3 row rounded display-6 justify-content-center li-items"
+    *ngFor="
+      let emp of employees
+        | paginate
+          : {
+              id: 'foo',
+              itemsPerPage: 3,
+              currentPage: pageNumber
+            }
+    "
+    class="p-2 m-3 row display-6 justify-content-center li-items"
   >
     <div class="col">{{ emp.username }}</div>
     <div class="col">₹{{ emp.balance | number }}</div>
-    <div class="col btn add-button display-3">Add Balance 💵</div>
+    <div class="col btn add-button display-2">Add Balance 💵</div>
+  </div>
+  <div class="nav-pages">
+    <div class="nav-pages-item" (click)="goBack()">
+      <i
+        [ngStyle]="{ visibility: !isBackDisabled ? 'visible' : 'hidden' }"
+        class="fa-solid fa-chevron-left fa-lg"
+        style="color: #0d1b2a"
+      ></i>
+    </div>
+    <div class="nav-pages-item">
+      <p class="h4">Page-{{ pageNumber }}</p>
+    </div>
+    <div
+      [ngStyle]="{ visibility: !isFrontDisabled ? 'visible' : 'hidden' }"
+      class="nav-pages-item"
+      (click)="goAhead()"
+    >
+      <i class="fa-solid fa-chevron-right fa-lg" style="color: #0d1b2a"></i>
+    </div>
   </div>
 </div>

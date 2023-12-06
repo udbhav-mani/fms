@@ -2,17 +2,47 @@
   <div class="row text-center mt-5 p-5 mx-5">
     <p class="display-4">Feedbacks📝</p>
   </div>
-  <div class="p-2 m-3 row rounded justify-content-center li-items">
+  <div class="p-2 mx-3 row rounded justify-content-center li-items-heading">
     <div class="col">Criteria</div>
     <div class="col">Rating</div>
     <div class="col">Reviews</div>
   </div>
   <div
-    *ngFor="let feedback of feedbacks"
+    *ngFor="
+      let feedback of feedbacks
+        | paginate
+          : {
+              id: 'foo',
+              itemsPerPage: 3,
+              currentPage: pageNumber
+            }
+    "
     class="p-2 m-3 row rounded display-6 justify-content-center li-items"
   >
     <div class="col">{{ feedback.criteria }}</div>
-    <div class="col">{{ feedback.feedback }} ⭐</div>
+
+    <div class="col">
+      <span *ngFor="let i of getArray(feedback.feedback)">⭐</span>
+    </div>
     <div class="col">{{ feedback.comments | titlecase }}</div>
+  </div>
+  <div class="nav-pages">
+    <div class="nav-pages-item" (click)="goBack()">
+      <i
+        [ngStyle]="{ visibility: !isBackDisabled ? 'visible' : 'hidden' }"
+        class="fa-solid fa-chevron-left fa-lg"
+        style="color: #0d1b2a"
+      ></i>
+    </div>
+    <div class="nav-pages-item">
+      <p class="h4">Page-{{ pageNumber }}</p>
+    </div>
+    <div
+      [ngStyle]="{ visibility: !isFrontDisabled ? 'visible' : 'hidden' }"
+      class="nav-pages-item"
+      (click)="goAhead()"
+    >
+      <i class="fa-solid fa-chevron-right fa-lg" style="color: #0d1b2a"></i>
+    </div>
   </div>
 </div>

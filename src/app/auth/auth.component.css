@@ -6,7 +6,7 @@
   box-sizing: border-box;
 }
 body {
-  background-color: #080710;
+  background-image: linear-gradient(30deg, #0d1b2a, #44a7fd);
 }
 .background {
   width: 430px;
@@ -23,12 +23,12 @@ body {
   border-radius: 50%;
 }
 .shape:first-child {
-  background: linear-gradient(#1845ad, #23a2f6);
+  background: linear-gradient(#0d1b2a, #44a7fd);
   left: -80px;
   top: -80px;
 }
 .shape:last-child {
-  background: linear-gradient(to right, #ff512f, #f09819);
+  background: linear-gradient(to right, #0d1b2a, #44a7fd);
   right: -30px;
   bottom: -80px;
 }
@@ -83,7 +83,7 @@ input {
 button {
   margin-top: 50px;
   width: 100%;
-  background-color: #000000;
+  background-color: #0d1b2a;
   color: #080710;
   padding: 15px 0;
   font-size: 18px;

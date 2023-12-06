@@ -17,6 +17,8 @@ import { ActivatedRouteSnapshot, Router, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { EmployeeComponent } from './employee/employee.component';
     EmployeeComponent,
   ],
   imports: [
+    NgxPaginationModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -37,6 +40,7 @@ import { EmployeeComponent } from './employee/employee.component';
     MatFormFieldModule,
     MatInputModule,
     MatToolbarModule,
+    MatDialogModule,
   ],
   providers: [
     {

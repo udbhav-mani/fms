@@ -1,16 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Young+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap");
+
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
 p {
-  font-family: "Lobster", sans-serif;
-  color: #e0e1dd;
+  font-family: "Teko", sans-serif;
+  color: #0d1b2a;
 }
 .container {
   color: #e0e1dd;
-  background-color: #0d1b2a;
+  background-color: rgba(172, 209, 246, 0.416);
+  border-radius: 20px;
   /* border:   #eb1111 2px solid; */
 }
 .p-2 {
-  font-family: "DM Serif Display", serif;
-  background-color: #415a77;
+  font-family: "Merriweather Sans", serif;
+  background-image: linear-gradient(45deg, rgb(44, 79, 117), #6ab4f5);
+  font-size: 1.5rem;
+  border: #0d1b2a 2px solid;
+
+  /* background-color: #415a77;   */
 }
 
+.item {
+  border-radius: 20px;
+}
