@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
+p {
+  font-family: "Lobster", sans-serif;
+  color: #e0e1dd;
+}
+.container {
+  color: #e0e1dd;
+  background-color: #0d1b2a;
+}
+.p-2 {
+  font-family: "Lobster", sans-serif;
+  background-color: #415a77;
+}
+.li-items {
+  background-color: #415a77;
+  font-family: "DM Serif Display", serif;
+}
+.add-button {
+  font-family: "DM Serif Display", serif;
+  color: #e0e1dd;
+  background-color: #0d1b2a;
+  max-width: 200px;
+  font-size: larg;
+}
+.add-button:hover {
+  transform: scale(1.1);
+}

@@ -1,0 +1,18 @@
+<div class="container rounded pb-5">
+  <div class="row text-center mt-5 p-5 mx-5">
+    <p class="display-4">Feedbacks📝</p>
+  </div>
+  <div class="p-2 m-3 row rounded justify-content-center li-items">
+    <div class="col">Criteria</div>
+    <div class="col">Rating</div>
+    <div class="col">Reviews</div>
+  </div>
+  <div
+    *ngFor="let feedback of feedbacks"
+    class="p-2 m-3 row rounded display-6 justify-content-center li-items"
+  >
+    <div class="col">{{ feedback.criteria }}</div>
+    <div class="col">{{ feedback.feedback }} ⭐</div>
+    <div class="col">{{ feedback.comments | titlecase }}</div>
+  </div>
+</div>

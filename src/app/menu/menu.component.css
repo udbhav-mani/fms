@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
+p {
+  font-family: "Lobster", sans-serif;
+  color: #e0e1dd;
+}
+.container {
+  color: #e0e1dd;
+  background-color: #0d1b2a;
+  /* border:   #eb1111 2px solid; */
+}
+.p-2 {
+  font-family: "DM Serif Display", serif;
+  background-color: #415a77;
+}
+

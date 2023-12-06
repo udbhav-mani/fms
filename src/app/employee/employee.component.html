@@ -1,0 +1,18 @@
+<div class="container rounded pb-5">
+  <div class="row text-center mt-5 p-5 mx-5">
+    <p class="display-4">List of employees📃</p>
+  </div>
+  <div class="p-2 m-3 row rounded justify-content-center li-items">
+    <div class="col">Username</div>
+    <div class="col">Balance</div>
+    <div class="col btn add-button display-3">Update group balance</div>
+  </div>
+  <div
+    *ngFor="let emp of employees"
+    class="p-2 m-3 row rounded display-6 justify-content-center li-items"
+  >
+    <div class="col">{{ emp.username }}</div>
+    <div class="col">₹{{ emp.balance | number }}</div>
+    <div class="col btn add-button display-3">Add Balance 💵</div>
+  </div>
+</div>
