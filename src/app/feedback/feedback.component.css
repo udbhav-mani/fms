@@ -10,10 +10,12 @@ p {
   font-family: "Teko", sans-serif;
   color: #0d1b2a;
 }
-.container {
+.fdb-container {
   color: #e0e1dd;
-  background-color: rgba(172, 209, 246, 0.416);
+  /* background-color: rgba(172, 209, 246, 0.416); */
   border-radius: 20px;
+  display: flex;
+  flex-direction: column;
 }
 .p-2 {
   border: #0d1b2a 2px solid;

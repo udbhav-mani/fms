@@ -21,6 +21,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ProposeMenuDialogComponent } from './menu/propose-menu-dialog/propose-menu-dialog.component';
 import { MenuRequestsComponent } from './menu/menu-requests/menu-requests.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { ProposeMenuComponent } from './menu/propose-menu/propose-menu.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { MenuRequestsComponent } from './menu/menu-requests/menu-requests.compon
     EmployeeComponent,
     ProposeMenuDialogComponent,
     MenuRequestsComponent,
+    SidenavComponent,
+    ProposeMenuComponent,
   ],
   imports: [
     NgxPaginationModule,

@@ -1,0 +1,52 @@
+.footer {
+  position: absolute;
+  bottom: 0px;
+}
+
+aside {
+  position: sticky;
+  color: #fff;
+  padding-left: 20px;
+  height: 100vh;
+  background-image: linear-gradient(30deg, #0d1b2a, #44a7fd);
+  border-top-right-radius: 80px;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+aside a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 12px;
+  padding-left: 30px;
+  text-decoration: none;
+}
+
+.active {
+  outline: none;
+  position: relative;
+  background-color: #dcecfb;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: #0d1b2a;
+}
+
+aside a:hover {
+  color: #0d1b2a;
+  outline: none;
+  position: relative;
+  background-color: #dcecfb;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+aside p {
+  margin: 0;
+  padding: 40px 0;
+}
+
+aside span {
+  font-size: larger;
+}

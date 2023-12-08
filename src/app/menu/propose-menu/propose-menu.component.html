@@ -1,0 +1,32 @@
+<div id="popup1" class="overlay" *ngIf="isProposedMenuOpen">
+  <div class="popup">
+    <h2 class="display-6 text-center">Propose new menu</h2>
+    <a class="close" (click)="openDialog()">&times;</a>
+    <div class="form-con">
+      <div class="content">
+        <div class="center mt-3">
+          <form #proposeForm="ngForm">
+            <div class="inputbox">
+              <input
+                type="date"
+                id="Date of menu"
+                ngModel
+                name="Date of menu"
+                required
+              />
+            </div>
+
+            <div class="inputbox">
+              <input type="text" id="item" ngModel name="item" required />
+              <span>Item</span>
+            </div>
+            <button class="btn add-item-btn">Add new</button>
+            <button class="btn submit-menu-btn" (click)="onSubmit(proposeForm)">
+              Submit Menu
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

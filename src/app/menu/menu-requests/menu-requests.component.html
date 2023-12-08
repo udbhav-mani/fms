@@ -1,15 +1,21 @@
-<div class="container">
+<div class="container requests-container rounded">
   <div *ngIf="true" class="row p-3">
     <div class="col-9 requests-text h4 ps-4">No proposed menu found!</div>
     <div class="col-3">
-      <button class="btn">Propose menu</button>
+      <button
+        class="btn"
+        routerLinkActive="router-link-active"
+        (click)="openDialog()"
+      >
+        Propose menu
+      </button>
     </div>
   </div>
   <div *ngIf="false" class="row p-3">
     <div class="col-9 requests-text h4 ps-4">
       Your menu has been rejected, Please review!
     </div>
-    <div class="col-3">
+    <div class="col-3" (click)="openDialog()">
       <button class="btn">Review menu</button>
     </div>
   </div>
@@ -22,3 +28,5 @@
     </div>
   </div>
 </div>
+<!-- s -->
+<app-propose-menu></app-propose-menu>

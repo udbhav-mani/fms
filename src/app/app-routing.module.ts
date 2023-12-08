@@ -6,6 +6,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { MenuComponent } from './menu/menu.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { EmployeeComponent } from './employee/employee.component';
+import { ProposeMenuComponent } from './menu/propose-menu/propose-menu.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,10 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'menu', component: MenuComponent },
+      {
+        path: 'menu',
+        component: MenuComponent,
+      },
       { path: 'view_fdb', component: FeedbackComponent },
       { path: 'list_emp', component: EmployeeComponent },
     ],

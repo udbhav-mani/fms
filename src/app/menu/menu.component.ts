@@ -10,7 +10,6 @@ import { ProposeMenuDialogComponent } from './propose-menu-dialog/propose-menu-d
 })
 export class MenuComponent {
   currentMenu: any;
-  isMenuOpen: boolean = false;
   constructor(private menuSer: MenuService, public dialog: MatDialog) {}
 
   ngOnInit() {
@@ -19,9 +18,5 @@ export class MenuComponent {
       this.currentMenu = response;
     });
   }
-  openDialog() {
-    console.log(this.isMenuOpen);
 
-    this.isMenuOpen = !this.isMenuOpen;
-  }
 }

@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Teko&display=swap");
+
+.propose-container {
+  display: flex;
+  flex-direction: row;
+  color: #0d1b2a;
+}
+.form-con {
+  margin: 3rem;
+}
+
+.center {
+  position: relative;
+  padding: 50px 50px;
+  background: #fff;
+  border-radius: 10px;
+}
+
+.center .inputbox {
+  position: relative;
+  width: 300px;
+  height: 50px;
+  margin: 40px;
+}
+.center .inputbox input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: 2px solid #000;
+  outline: none;
+  background: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.2em;
+}
+
+.center .inputbox span {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-size: 1em;
+  transition: 0.6s;
+  font-family: sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
+  color: #0d1b2a;
+}
+.add-item-btn,
+.submit-menu-btn {
+  font-size: 1em;
+  font-family: "Merriweather Sans", sans-serif;
+  background-color: #0d1b2a;
+  margin-left: 2.5rem;
+  margin-right: 2rem;
+  border: 2px solid black;
+  color: #fff;
+}
+.add-menu-btn {
+  margin: 0px 2.5rem;
+}
+.center .inputbox input:focus ~ span,
+.center .inputbox input:valid ~ span {
+  transform: translateX(-13px) translateY(-35px);
+  font-size: 1em;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.801);
+  transition: opacity 1000ms;
+  visibility: visible;
+  opacity: 1;
+  z-index: 99;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #dcecfb;
+  border-radius: 5px;
+  width: 50%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  color: #0d1b2a;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #0d1b2a;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
