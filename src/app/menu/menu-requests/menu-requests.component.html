@@ -1,0 +1,24 @@
+<div class="container">
+  <div *ngIf="true" class="row p-3">
+    <div class="col-9 requests-text h4 ps-4">No proposed menu found!</div>
+    <div class="col-3">
+      <button class="btn">Propose menu</button>
+    </div>
+  </div>
+  <div *ngIf="false" class="row p-3">
+    <div class="col-9 requests-text h4 ps-4">
+      Your menu has been rejected, Please review!
+    </div>
+    <div class="col-3">
+      <button class="btn">Review menu</button>
+    </div>
+  </div>
+  <div *ngIf="false" class="row p-3">
+    <div class="col-9 requests-text h4 ps-4">
+      Your menu has been approved, Please review!
+    </div>
+    <div class="col-3">
+      <button class="btn btn">Review menu</button>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,8 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ProposeMenuDialogComponent } from './menu/propose-menu-dialog/propose-menu-dialog.component';
+import { MenuRequestsComponent } from './menu/menu-requests/menu-requests.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     MenuComponent,
     FeedbackComponent,
     EmployeeComponent,
+    ProposeMenuDialogComponent,
+    MenuRequestsComponent,
   ],
   imports: [
     NgxPaginationModule,
@@ -48,6 +52,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
       useClass: AuthInterceptor,
       multi: true,
     },
+    MatDialog,
   ],
   bootstrap: [AppComponent],
 })

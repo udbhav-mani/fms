@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuService } from './menu.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProposeMenuDialogComponent } from './propose-menu-dialog/propose-menu-dialog.component';
 
 @Component({
   selector: 'app-menu',
@@ -8,12 +10,18 @@ import { MenuService } from './menu.service';
 })
 export class MenuComponent {
   currentMenu: any;
-  constructor(private menuSer: MenuService) {}
+  isMenuOpen: boolean = false;
+  constructor(private menuSer: MenuService, public dialog: MatDialog) {}
 
   ngOnInit() {
     this.menuSer.get_menu('published').subscribe((response) => {
       console.log(response);
       this.currentMenu = response;
     });
+  }
+  openDialog() {
+    console.log(this.isMenuOpen);
+
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }
