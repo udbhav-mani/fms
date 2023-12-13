@@ -19,19 +19,19 @@ export class SidenavComponent {
   user: UserModel;
   navigation = {
     admin: [
-      ['View Menu', 'menu'],
-      ['View feedbacks', 'view_fdb'],
-      ['List Employees', 'list_emp'],
+      ['View Menu', 'menu', 'fa-solid fa-utensils'],
+      ['View feedbacks', 'view_fdb', 'fa-solid fa-comment'],
+      ['List Employees', 'list_emp', 'fa-solid fa-user'],
     ],
     f_emp: [
-      ['View Menu', 'menu'],
-      ['Place Order', 'order'],
-      ['TopUp Card', 'topup_card'],
+      ['View Menu', 'menu', 'fa-solid fa-utensils'],
+      ['Place Order', 'order', 'fa-solid fa-cart-shopping'],
+      ['TopUp Card', 'topup_card', 'fa-regular fa-credit-card'],
     ],
     emp: [
-      ['View Menu', 'menu'],
-      ['Place Order', 'order'],
-      ['Add feedback', 'add-fdb'],
+      ['View Menu', 'menu', 'fa-solid fa-utensils'],
+      ['Place Order', 'order', 'fa-solid fa-cart-shopping'],
+      ['Add feedback', 'add-fdb', 'fa-solid fa-user'],
     ],
   };
   role: string;

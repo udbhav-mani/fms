@@ -1,0 +1,42 @@
+<div id="popup1" class="overlay" *ngIf="isUpdateMenu">
+  <div class="popup">
+    <h2 class="display-6 text-center">{{ rejectedMenu.date }}</h2>
+    <a class="close" (click)="closeDialog()">&times;</a>
+    <div class="content" *ngIf="!isDiscarded; else isUnapproved">
+      <div class="h3">
+        Fiesta has denied the availabilty of {{ oldItem }}, and suggested
+        {{ newItem }}. Do you approve?
+      </div>
+      <div class="btns">
+        <div><button class="btn mx-3" (click)="approveMenu()">Yes</button></div>
+        <div><button class="btn" (click)="unapproveMenu()">No</button></div>
+      </div>
+    </div>
+
+    <ng-template #isUnapproved>
+      <div class="unapprove-cont">
+        <div class="h3">
+          Do you want to suggest anything instead of {{ oldItem }}?
+        </div>
+        <form #newItemForm="ngForm">
+          <div class="mb-3">
+            <label for="newItem" class="form-label h3">New Item</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              name="newItem"
+              id="newItem"
+              [(ngModel)]="newItemAdmin"
+            />
+            <div>
+              <button class="btn" (click)="onSubmit()">Suggest changes</button>
+            </div>
+            <div>
+              <button class="btn" (click)="discardMenu()">Discard Menu</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+  </div>
+</div>

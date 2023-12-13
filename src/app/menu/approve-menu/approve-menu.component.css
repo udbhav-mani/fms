@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko&display=swap");
-
-.date-input {
-  margin: 2rem 12rem;
-}
 body {
   --main-bg-color: #c0cecf;
   --font-color: #003835;
+  --font-color-lt: #c0cecf;
   font-family: "Kalnia", serif;
+}
+.date-input {
+  margin: 2rem 12rem;
 }
 
 .overlay {
@@ -25,7 +25,7 @@ body {
 .popup {
   margin: 70px auto;
   padding: 20px;
-  background: var(--main-bg-color);
+  background: var(--font-color-lt);
   border-radius: 5px;
   width: 50%;
   position: relative;
@@ -33,7 +33,7 @@ body {
 }
 
 .popup h2 {
-  color: #0d1b2a;
+  color: var(--font-color);
 }
 .popup .close {
   position: absolute;
@@ -43,27 +43,26 @@ body {
   font-size: 30px;
   font-weight: bold;
   text-decoration: none;
-  color: #333;
+  color: var(--font-color);
+  cursor: pointer;
 }
 .popup .close:hover {
-  color: #0d1b2a;
+  color: #2f2e41;
 }
 .popup .content {
   max-height: 30%;
   overflow: auto;
 }
-.form {
-  width: 75%;
-}
+
 .form-group {
+  margin-bottom: 15px;
   display: flex;
   flex-direction: row;
 }
 
 .form-label {
-  font-family: "Merriweather Sans";
-  margin-bottom: 0px;
-  padding-top: 0.3rem;
+  width: 25%;
+  margin-right: 15px;
 }
 
 .display-6 {
@@ -72,15 +71,35 @@ body {
 .form-control {
   flex-grow: 1;
 }
-.btn-primary {
-}
-.btn-primary:disabled {
-  background: #0d1b2a34;
-  border: 0px;
-}
 
+.h3 {
+  font-family: "Merriweather Sans";
+  color: #0d1b2a;
+}
 .btns {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
+}
+
+.btn {
+}
+
+li {
+  color: var(--font-color);
+  font-size: 25px;
+}
+
+.list-group-item {
+  width: 500px;
+  background-color: #c0cecf;
+  border-color: var(--font-color);
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+}
+
+.items-container {
+  display: flex;
+  justify-content: center;
 }

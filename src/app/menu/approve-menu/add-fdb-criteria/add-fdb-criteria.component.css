@@ -1,0 +1,39 @@
+body {
+  --main-bg-color: #c0cecf;
+  --font-color: #003835;
+  --font-color-lt: #c0cecf;
+  font-family: "Kalnia", serif;
+}
+.chips-container {
+  display: flex;
+  flex-direction: row;
+  color: var(--main-bg-color);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.chips {
+  padding: 10px;
+  border-radius: 30px;
+  background-color: var(--font-color);
+  min-width: 100px;
+  margin: 10px 20px;
+  cursor: pointer;
+}
+.chip-add {
+  min-width: 50px;
+}
+.input-group {
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.btns {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}

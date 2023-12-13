@@ -1,17 +1,17 @@
 <aside>
-  <p class="display-6">Welcome User</p>
-  <div
-    *ngFor="let i of navigation[role]"
-    class="row justify-content-center my-3 h2"
-  >
-    <a class="butn" [routerLink]="[i[1]]" style="cursor: pointer">
-      {{ i[0] }}
+  <p class="h3">Hello, {{ user.userName != "" ? user.userName : "User" }}</p>
+  <div *ngFor="let i of navigation[role]" class="row justify-content-center h4">
+    <a
+      class="butn"
+      [routerLink]="[i[1]]"
+      routerLinkActive="active"
+      style="cursor: pointer"
+    >
+      <i [class]="i[2]"></i>
+      &nbsp;{{ i[0] }}
     </a>
   </div>
   <div class="footer">
-    <div class="butn">
-      <span (click)="logout()" style="cursor: pointer">Logout</span>
-    </div>
     <div class="">&copy;&nbsp; Udbhav Mani</div>
   </div>
 </aside>

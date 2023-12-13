@@ -31,7 +31,7 @@ export class FeedbackComponent {
   goAhead() {
     this.pageNumber++;
     this.isBackDisabled = false;
-    if (this.pageNumber > this.feedbacks.length / 3) {
+    if (this.pageNumber > this.feedbacks.length / 7) {
       this.isFrontDisabled = true;
     }
   }

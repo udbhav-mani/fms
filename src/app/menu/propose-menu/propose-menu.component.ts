@@ -19,10 +19,29 @@ export class ProposeMenuComponent {
   proposeForm: NgForm;
   onSubmit(proposeForm) {
     this.proposeForm = proposeForm;
-    console.log(this.proposeForm);
+    let newMenu = this.proposeForm.value;
+    let menuDate = newMenu.date;
+    delete newMenu.date;
+    let items = Object.values(newMenu);
+    newMenu = { date: new Date(menuDate), items: items };
+    this.menuSer.propose_menu(newMenu).subscribe((data) => {
+      console.log(data);
+    });
+    this.proposeForm.reset();
+    this.menuSer.menuState.next('pending');
+    this.closeDialog();
   }
-  openDialog() {
+  closeDialog() {
     this.isProposedMenuOpen = !this.isProposedMenuOpen;
     this.menuSer.proposeMenuChanged.next(this.isProposedMenuOpen);
+  }
+
+  items: string[] = [''];
+
+  addItem() {
+    this.items.push('');
+  }
+  removeItem(i: number) {
+    this.items.splice(i, 1);
   }
 }

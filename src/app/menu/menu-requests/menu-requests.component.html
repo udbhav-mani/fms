@@ -1,32 +1,81 @@
-<div class="container requests-container rounded">
-  <div *ngIf="true" class="row p-3">
-    <div class="col-9 requests-text h4 ps-4">No proposed menu found!</div>
-    <div class="col-3">
-      <button
-        class="btn"
-        routerLinkActive="router-link-active"
-        (click)="openDialog()"
-      >
-        Propose menu
-      </button>
+<h2 *ngIf="userRole != 'emp'"><span>&nbsp; Notifications &nbsp;</span></h2>
+<div class="container requests-container" *ngIf="userRole != 'emp'">
+  <div *ngIf="userRole === 'admin'">
+    <div
+      *ngIf="
+        !isMenuProposed && !isMenuRejected && !isMenuApproved;
+        else isProposed
+      "
+      class="row p-3"
+    >
+      <div class="col-9 requests-text h4">No proposed menu found!</div>
+      <div class="col-3">
+        <button
+          class="btn"
+          routerLinkActive="router-link-active"
+          (click)="openDialog('propose')"
+        >
+          Propose menu
+        </button>
+      </div>
+    </div>
+
+    <ng-template #isProposed>
+      <div class="row p-3" *ngIf="!isMenuRejected && !isMenuApproved">
+        <div class="col-9 requests-text h4">Your menu is being reviewed!</div>
+      </div>
+    </ng-template>
+
+    <div *ngIf="isMenuRejected" class="row p-3">
+      <div class="col-9 requests-text h4">
+        Your menu has been rejected, Please review!
+      </div>
+      <div class="col-3" (click)="openDialog('update')">
+        <button class="btn">Review menu</button>
+      </div>
+    </div>
+
+    <div *ngIf="isMenuApproved" class="row p-3">
+      <div class="col-9 requests-text h4 ps-4">
+        Your menu has been approved, Please review!
+      </div>
+      <div class="col-3" (click)="openDialog('approve')">
+        <button class="btn">Review menu</button>
+      </div>
     </div>
   </div>
-  <div *ngIf="false" class="row p-3">
-    <div class="col-9 requests-text h4 ps-4">
-      Your menu has been rejected, Please review!
+
+  <!-- f-emp notifcations -->
+
+  <div *ngIf="userRole === 'f_emp'">
+    <div *ngIf="isMenuPending; else isNotPending" class="row p-3">
+      <div class="col-9 requests-text h4">
+        You have a pending menu, Please review!
+      </div>
+      <div class="col-3">
+        <button
+          class="btn"
+          routerLinkActive="router-link-active"
+          (click)="openDialog('review')"
+        >
+          Review menu
+        </button>
+      </div>
     </div>
-    <div class="col-3" (click)="openDialog()">
-      <button class="btn">Review menu</button>
-    </div>
+
+    <ng-template #isNotPending>
+      <div class="row p-3">
+        <div class="col-9 requests-text h4">
+          You don't have any menu to review currently!
+        </div>
+      </div>
+    </ng-template>
   </div>
-  <div *ngIf="false" class="row p-3">
-    <div class="col-9 requests-text h4 ps-4">
-      Your menu has been approved, Please review!
-    </div>
-    <div class="col-3">
-      <button class="btn btn">Review menu</button>
-    </div>
-  </div>
+
+  <app-propose-menu></app-propose-menu>
+  <app-update-menu [rejectedMenu]="rejectedMenu"></app-update-menu>
+  <app-review-menu [currentMenu]="pendingMenu"></app-review-menu>
+  <app-approve-menu [approvedMenu]="approvedMenu"></app-approve-menu>
 </div>
-<!-- s -->
-<app-propose-menu></app-propose-menu>
+
+<!-- <h2><span>&nbsp; * * * * * &nbsp;</span></h2> -->

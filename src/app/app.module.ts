@@ -23,6 +23,11 @@ import { ProposeMenuDialogComponent } from './menu/propose-menu-dialog/propose-m
 import { MenuRequestsComponent } from './menu/menu-requests/menu-requests.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ProposeMenuComponent } from './menu/propose-menu/propose-menu.component';
+import { UpdateMenuComponent } from './menu/update-menu/update-menu.component';
+import { ReviewMenuComponent } from './menu/review-menu/review-menu.component';
+import { RejectMenuComponent } from './menu/review-menu/reject-menu/reject-menu.component';
+import { ApproveMenuComponent } from './menu/approve-menu/approve-menu.component';
+import { AddFdbCriteriaComponent } from './menu/approve-menu/add-fdb-criteria/add-fdb-criteria.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +41,11 @@ import { ProposeMenuComponent } from './menu/propose-menu/propose-menu.component
     MenuRequestsComponent,
     SidenavComponent,
     ProposeMenuComponent,
+    UpdateMenuComponent,
+    ReviewMenuComponent,
+    RejectMenuComponent,
+    ApproveMenuComponent,
+    AddFdbCriteriaComponent,
   ],
   imports: [
     NgxPaginationModule,

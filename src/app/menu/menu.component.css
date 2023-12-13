@@ -32,3 +32,41 @@ p {
 .item {
   border-radius: 20px;
 }
+h2 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px dashed var(--font-color);
+  line-height: 0.1em;
+  margin: 10px 20px;
+  color: var(--font-color);
+  margin: 2rem;
+}
+
+h2 span {
+  color: var(--font-color);
+  background: var(--main-bg-color);
+  padding: 0 10px;
+  font-family: "Merriweather Sans", serif;
+  font-size: 20px;
+}
+h2 .date-text {
+  font-size: 30px;
+}
+li {
+  color: var(--font-color);
+  font-size: 25px;
+}
+
+.list-group-item {
+  width: 400px;
+  background-color: #c0cecf;
+  border-color: var(--font-color);
+  font-family: "Merriweather Sans", sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+}
+
+.items-container {
+  display: flex;
+  justify-content: center;
+}

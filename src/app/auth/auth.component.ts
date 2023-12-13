@@ -23,7 +23,7 @@ export class AuthComponent {
         (responseData) => {
           this.authSer.loginUser(responseData['access_token']);
           const user = this.userSer.token;
-          this.router.navigate(['home/' + user.role]);
+          this.router.navigate(['home/' + user.role + '/menu']);
         },
         (error) => {
           if (error.status === 401) {

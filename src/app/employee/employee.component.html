@@ -1,11 +1,58 @@
-<div class="container pb-5 emp-container">
-  <div class="row text-center p-5 mx-5">
-    <p class="display-4">List of employees📃</p>
+<div class="emp-container">
+  <div class="emp-header">
+    <h2>
+      <span class="header-text">&nbsp; List of employees &nbsp;</span>
+    </h2>
   </div>
-  <div class="p-2 m-3 row justify-content-center li-items-heading">
+
+  <div class="emp-list-container">
+    <div class="emp-list-data">
+      <table class="table table-striped borderless">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Username</th>
+            <th scope="col">Balance</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let emp of employees
+                | paginate
+                  : {
+                      id: 'foo',
+                      itemsPerPage: 7,
+                      currentPage: pageNumber
+                    };
+              let i = index
+            "
+          >
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ emp.username }}</td>
+            <td>₹{{ emp.balance | number }}</td>
+            <td>
+              <div class="col btn add-button display-2" (click)="addBalance(i)">
+                +
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- <div class="p-2 m-3 row justify-content-center li-items-heading">
     <div class="col">Username</div>
-    <div class="col">Balance</div>
-    <div class="col btn add-button display-3">Update group balance</div>
+    <div class="col" *ngIf="userRole === 'admin'">Balance</div>
+    <div
+      class="col btn add-button display-3"
+      (click)="addBalance(-1)"
+      *ngIf="userRole === 'admin'"
+    >
+      Update group balance
+    </div>
   </div>
   <div
     *ngFor="
@@ -13,16 +60,20 @@
         | paginate
           : {
               id: 'foo',
-              itemsPerPage: 3,
+              itemsPerPage: 7,
               currentPage: pageNumber
-            }
+            };
+      let i = index
     "
     class="p-2 m-3 row display-6 justify-content-center li-items"
   >
     <div class="col">{{ emp.username }}</div>
     <div class="col">₹{{ emp.balance | number }}</div>
-    <div class="col btn add-button display-2">Add Balance 💵</div>
-  </div>
+    <div class="col btn add-button display-2" (click)="addBalance(i)">
+      Add Balance
+    </div>
+  </div> -->
+
   <div class="nav-pages">
     <div class="nav-pages-item" (click)="goBack()">
       <i
@@ -40,6 +91,29 @@
       (click)="goAhead()"
     >
       <i class="fa-solid fa-chevron-right fa-lg" style="color: #0d1b2a"></i>
+    </div>
+  </div>
+</div>
+
+<div id="popup1" class="overlay" *ngIf="isUpdateBalanceOpen">
+  <div class="popup">
+    <h1 class="display-6 text-center">Update balance</h1>
+    <a class="close" (click)="closeDialog()">&times;</a>
+    <div class="content">
+      <div class="input-group mb-3">
+        <span class="input-group-text">₹</span>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Enter Amount"
+          [(ngModel)]="amount"
+        />
+        <div class="input-group-append">
+          <button class="btn" type="button" (click)="updateBalance()">
+            Update
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

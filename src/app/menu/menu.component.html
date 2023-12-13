@@ -3,17 +3,35 @@
     <div class="row"><app-menu-requests></app-menu-requests></div>
   </div>
 
-
-
-  <div class="container">
-    <div class="row text-center mt-5 pt-5 mx-5">
-      <p class="display-4">{{ currentMenu.date }}🗓️</p>
+  <div class="menu-container p-3">
+    <!-- <div class="menu-container-date p-3 text-center">Current Menu</div> -->
+    <div class="menu-container-header">
+      <h2>
+        <span class="date-text"
+          >&nbsp; {{ currentMenu.date | date }} &nbsp;</span
+        >
+      </h2>
     </div>
-    <div class="row justify-content-center pb-5">
-      <div class="col-4 my-4 mx-4" *ngFor="let item of currentMenu.items">
-        <div class="p-2 py-4 text-center h2 item">
-          {{ item | titlecase }}
+    <div class="items-container px-5 mx-5 py-4 text-center">
+      <ul class="list-group text-center">
+        <li class="list-group-item" *ngFor="let item of currentMenu.items">
+          -&nbsp;&nbsp; {{ item | titlecase }} &nbsp;&nbsp;-
+        </li>
+      </ul>
+      <!-- <ul class="list-unstyled">
+        <li *ngFor="let item of currentMenu.items">
+          -- {{ item | titlecase }}
+        </li>
+      </ul> -->
+
+      <!-- <div class="row justify-content-center pb-5">
+        <div class="col-4 my-4 mx-4" *ngFor="let item of currentMenu.items">
+          <div class="p-2 py-4 text-center h2 item">
+            -- {{ item | titlecase }}
+          </div>
         </div>
-      </div>
+      </div> -->
     </div>
+    <h2><span>&nbsp; * * * * * &nbsp;</span></h2>
   </div>
+</div>

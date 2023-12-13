@@ -1,0 +1,29 @@
+<div class="add-criteria-container">
+  <div class="chips-container">
+    <div
+      class="chips text-center"
+      *ngFor="let cr of criteria; let i = index"
+      (click)="selectChip(i)"
+      [ngStyle]="{ backgroundColor: cr.selected ? '#2f2e41' : '#003835' }"
+    >
+      {{ cr.criteria }}
+    </div>
+    <div class="chips chip-add text-center" (click)="addNewChip()">+</div>
+  </div>
+  <div class="input-group mb-3" *ngIf="newCriteriaBeingAdded">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="New Criteria"
+      [(ngModel)]="newCriteria"
+    />
+    <div class="input-group-append">
+      <button class="btn" type="button" (click)="addNewCriteria()">Add</button>
+    </div>
+  </div>
+  <div class="btns">
+    <button class="btn" type="button" (click)="addFdbCriteria()">
+      Add criteria
+    </button>
+  </div>
+</div>

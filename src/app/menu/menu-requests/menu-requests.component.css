@@ -1,16 +1,36 @@
-.requests-text {
-  font-family: "Teko", sans-serif;
+* {
+  --main-bg-color: #c0cecf;
+  --font-color: #003835;
+  --font-color-lt: #c0cecf;
   font-family: "Merriweather Sans", serif;
-  color: #0d1b2a;
+}
+.requests-text {
+  color: var(--font-color);
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 .requests-container {
-  border: 2px solid #0d1b2a;
-  background-color: white;
+  margin: 0rem 3rem;
 }
 .btn {
-  /* background-image: linear-gradient(45deg, rgb(44, 79, 117), #6ab4f5); */
-  background-color: #1c3b5c;
-  color: rgb(255, 255, 255);
-  font-family: "Merriweather Sans", serif;
+  padding: 0.5rem;
 }
 
+h2 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px dashed var(--font-color);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  color: var(--font-color);
+  margin: 2rem;
+}
+
+h2 span {
+  color: var(--font-color);
+  background: var(--main-bg-color);
+  padding: 0 10px;
+  font-family: "Merriweather Sans", serif;
+  font-size: 20px;
+}

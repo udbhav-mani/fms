@@ -1,0 +1,32 @@
+<div id="popup1" class="overlay" *ngIf="isApprovedMenuOpen">
+  <div class="popup">
+    <h2 class="display-6 text-center" *ngIf="!isFdbCriteriaOpen">
+      {{ approvedMenu.date }}
+    </h2>
+    <h2 class="display-6 text-center" *ngIf="isFdbCriteriaOpen">
+      Add feedback criteria
+    </h2>
+    <a class="close" (click)="closeDialog()">&times;</a>
+
+    <div class="content" *ngIf="!isFdbCriteriaOpen; else fdbCriteria">
+      <div class="items-container px-5 mx-5 py-4 text-center">
+        <ul class="list-group text-center">
+          <li class="list-group-item" *ngFor="let item of approvedMenu.items">
+            -&nbsp;&nbsp; {{ item | titlecase }} &nbsp;&nbsp;-
+          </li>
+        </ul>
+      </div>
+
+      <div class="btns">
+        <div>
+          <button class="btn mx-3" (click)="acceptMenu()">Approve</button>
+        </div>
+        <div><button class="btn" (click)="discardMenu()">Discard</button></div>
+      </div>
+    </div>
+
+    <ng-template #fdbCriteria>
+      <app-add-fdb-criteria></app-add-fdb-criteria
+    ></ng-template>
+  </div>
+</div>

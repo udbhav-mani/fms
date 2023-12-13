@@ -24,6 +24,8 @@ const routes: Routes = [
       },
       { path: 'view_fdb', component: FeedbackComponent },
       { path: 'list_emp', component: EmployeeComponent },
+      { path: 'order', component: EmployeeComponent },
+      { path: 'topup_card', component: EmployeeComponent },
     ],
   },
 ];

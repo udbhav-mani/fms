@@ -11,43 +11,52 @@
     <!--Stylesheet-->
   </head>
   <body>
-    <div class="background">
+    <header>
+      <img src="assets\Fiesta-logo.png" alt="" class="logo-img" />
+    </header>
+    <!-- <div class="background">
       <div class="shape"></div>
       <div class="shape"></div>
+    </div> -->
+
+    <div class="main-div">
+      <div class="form-div">
+        <form #authForm="ngForm">
+          <h2>Welcome</h2>
+
+          <label for="username">Username</label>
+          <div class="input-container">
+            <i class="fa fa-user icon"></i>
+            <input type="text" id="username" ngModel name="username" required />
+          </div>
+
+          <label for="password">Password</label>
+          <div class="input-container">
+            <i class="fa fa-key icon"></i>
+            <input
+              type="password"
+              id="password"
+              ngModel
+              name="password"
+              required
+            />
+          </div>
+
+          <!-- <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="" ngModel name="username" />
+          </mat-form-field>
+    
+          <mat-form-field appearance="outline" style="width: 100%">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="" ngModel name="password" />
+          </mat-form-field> -->
+          <button class="btn" (click)="onSubmit(authForm)">Log In</button>
+        </form>
+      </div>
+      <div class="div-img">
+        <img src="\assets\login-img.svg" alt="" />
+      </div>
     </div>
-    <form #authForm="ngForm">
-      <h3>Login</h3>
-
-      <label for="username">Username</label>
-      <input
-        type="text"
-        placeholder="Username"
-        id="username"
-        ngModel
-        name="username"
-        required
-      />
-
-      <label for="password">Password</label>
-      <input
-        type="password"
-        placeholder="Password"
-        id="password"
-        ngModel
-        name="password"
-        required
-      />
-
-      <!-- <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>Username</mat-label>
-        <input matInput placeholder="" ngModel name="username" />
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label>Password</mat-label>
-        <input matInput placeholder="" ngModel name="password" />
-      </mat-form-field> -->
-      <button (click)="onSubmit(authForm)">Log In</button>
-    </form>
   </body>
 </html>

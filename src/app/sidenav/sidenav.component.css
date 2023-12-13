@@ -1,45 +1,55 @@
+* {
+  --main-bg-color: #c0cecf;
+  --font-color: #003835;
+  --font-color-lt: #c0cecf;
+}
 .footer {
   position: absolute;
   bottom: 0px;
+  color: var(--font-color);
 }
 
 aside {
-  position: sticky;
-  color: #fff;
+  color: var(--font-color-lt);
   padding-left: 20px;
+
   height: 100vh;
-  background-image: linear-gradient(30deg, #0d1b2a, #44a7fd);
-  border-top-right-radius: 80px;
+  background: linear-gradient(210deg, #003835 40%, #c0cecf);
   overflow: hidden;
-  top: 0;
-  left: 0;
+  border-top: 1.5px var(--font-color-lt) solid;
+  font-family: "PT Sans", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: bold;
 }
 
 aside a {
-  color: #fff;
+  color: var(--font-color);
+}
+aside a {
+  color: var(--font-color-lt);
   text-decoration: none;
   display: block;
   padding: 12px;
-  padding-left: 30px;
   text-decoration: none;
 }
 
 .active {
   outline: none;
   position: relative;
-  background-color: #dcecfb;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-  color: #0d1b2a;
+  color: var(--font-color) !important;
+  background-color: var(--main-bg-color);
 }
 
 aside a:hover {
-  color: #0d1b2a;
+  /* color: #0d1b2a; */
   outline: none;
   position: relative;
-  background-color: #dcecfb;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
+  color: var(--font-color) !important;
+  /*  */
+  background-color: var(--main-bg-color);
+  i {
+    color: var(--font-color);
+  }
 }
 
 aside p {
@@ -47,6 +57,16 @@ aside p {
   padding: 40px 0;
 }
 
-aside span {
-  font-size: larger;
+.img-logo {
+  width: 30px;
+  height: 30px;
+}
+
+.nav-lnks {
+  display: flex;
+  justify-content: flex-start;
+}
+.h3 {
+  font-family: "Kalnia", serif;
+  font-weight: bolder;
 }
