@@ -41,8 +41,6 @@ p {
 
 .nav-button {
   border-radius: 50%;
-  background-color: #0d1b2a;
-  color: #e0e1dd;
   max-width: 50px;
   max-height: 50px;
 }
@@ -51,6 +49,13 @@ p {
   display: flex;
   margin-top: 2rem;
   justify-content: space-evenly;
+}
+
+.nav-pages-item {
+  cursor: pointer;
+}
+.nav-pages-item:hover {
+  transform: scale(1.2);
 }
 
 .input-group {
@@ -86,8 +91,20 @@ table.table-striped.borderless {
   --bs-table-bg: #c0cecf;
   --bs-table-border-color: #003835;
   font-family: "Merriweather Sans", serif;
+  text-align: center;
 }
 
 .emp-list-container {
   margin: 5rem;
+}
+
+.current {
+  color: #003835;
+  background-color: var(--main-bg-color);
+}
+
+.btn {
+  padding: 0px 8px;
+  font-size: 20px;
+  /* border-radius: 50%; */
 }

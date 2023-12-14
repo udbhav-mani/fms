@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from './auth.service';
-import { Observable, catchError, tap } from 'rxjs';
 import { UserService } from 'src/shared/user.service';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-auth',
@@ -14,26 +14,39 @@ export class AuthComponent {
   constructor(
     private authSer: AuthService,
     private userSer: UserService,
-    private router: Router
+    private router: Router,
+    private toastSer: NgToastService
   ) {}
   onSubmit(authForm: NgForm) {
     this.authSer
       .login(authForm.form.value.username, authForm.form.value.password)
-      .subscribe(
-        (responseData) => {
+      .subscribe({
+        next: (responseData) => {
           this.authSer.loginUser(responseData['access_token']);
           const user = this.userSer.token;
           this.router.navigate(['home/' + user.role + '/menu']);
+          this.toastSer.success({
+            detail: 'Logged in',
+            summary: 'Successfully logged in.',
+          });
         },
-        (error) => {
-          if (error.status === 401) {
-            alert('Wrong Crededentials');
+        error: (err) => {
+          if (err.status === 401) {
+            console.log(err.error.error.message);
+
+            this.toastSer.error({
+              summary: err.error.error.message,
+              detail: 'Error logging in.',
+            });
             authForm.reset();
           } else {
-            console.error('Error logging in: ', error);
+            this.toastSer.error({
+              detail: err.error.error.message,
+              summary: 'Error logging in',
+            });
           }
-        }
-      );
+        },
+      });
   }
 
   ngOnInit() {

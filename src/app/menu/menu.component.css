@@ -33,7 +33,7 @@ p {
   border-radius: 20px;
 }
 h2 {
-  width: 100%;
+  width: 94%;
   text-align: center;
   border-bottom: 1px dashed var(--font-color);
   line-height: 0.1em;
@@ -69,4 +69,12 @@ li {
 .items-container {
   display: flex;
   justify-content: center;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+}
+.btn {
+  padding: 0.7rem 4rem;
 }

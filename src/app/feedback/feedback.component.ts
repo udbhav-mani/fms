@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FeedbackService } from './feedback.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-feedback',
@@ -7,15 +8,34 @@ import { FeedbackService } from './feedback.service';
   styleUrls: ['./feedback.component.css'],
 })
 export class FeedbackComponent {
-  feedbacks: any;
+  feedbacks: any = null;
   pageNumber: number = 1;
   isFrontDisabled: boolean = false;
   isBackDisabled: boolean = true;
-  constructor(private feedbackSer: FeedbackService) {}
+
+  constructor(
+    private feedbackSer: FeedbackService,
+    private toastSer: NgToastService
+  ) {}
 
   ngOnInit() {
-    this.feedbackSer.get_feedbacks().subscribe((response) => {
-      this.feedbacks = response;
+    this.feedbackSer.get_feedbacks().subscribe({
+      next: (response) => {
+        this.feedbacks = response;
+      },
+      error: (err) => {
+        if (err.status === 400) {
+          this.toastSer.error({
+            summary: err.error.error.message,
+            detail: '',
+          });
+        } else {
+          this.toastSer.error({
+            detail: err.error.message,
+            summary: 'Error',
+          });
+        }
+      },
     });
   }
   getArray(num: string) {

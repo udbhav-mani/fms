@@ -12,74 +12,68 @@
           <tr>
             <th scope="col"></th>
             <th scope="col">Username</th>
-            <th scope="col">Balance</th>
-            <th scope="col">Actions</th>
+            <th scope="col">
+              {{ userRole === "admin" ? "Balance" : "Topup Card" }}
+            </th>
+            <th scope="col">
+              {{ userRole === "admin" ? "Topup Card" : "Place Order" }}
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr
             *ngFor="
               let emp of employees
-                | paginate
-                  : {
-                      id: 'foo',
-                      itemsPerPage: 7,
-                      currentPage: pageNumber
-                    };
+                | paginate : { itemsPerPage: 7, currentPage: pageNumber };
               let i = index
             "
           >
-            <th scope="row">{{ i + 1 }}</th>
+            <th scope="row">{{ emp.user_id }}</th>
             <td>{{ emp.username }}</td>
-            <td>₹{{ emp.balance | number }}</td>
-            <td>
-              <div class="col btn add-button display-2" (click)="addBalance(i)">
+            <td *ngIf="userRole === 'admin'">₹{{ emp.balance | number }}</td>
+            <td *ngIf="userRole === 'f_emp'">
+              <div
+                *ngIf="userRole !== 'admin'"
+                class="col btn add-button display-2"
+                (click)="addBalance(i)"
+              >
                 +
+              </div>
+            </td>
+
+            <td>
+              <div
+                *ngIf="userRole === 'admin'"
+                class="col btn add-button display-2"
+                (click)="addBalance(i)"
+              >
+                +
+              </div>
+              <div
+                class="col btn add-button display-2 ms-2"
+                (click)="openPlaceOrder(emp)"
+                *ngIf="userRole === 'f_emp'"
+              >
+                <i class="fa-solid fa-cart-plus"></i>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
+      <pagination-controls
+        class="text-center"
+        (pageChange)="pageNumber = $event"
+        previousLabel=""
+        nextLabel=""
+      ></pagination-controls>
     </div>
   </div>
-
-  <!-- <div class="p-2 m-3 row justify-content-center li-items-heading">
-    <div class="col">Username</div>
-    <div class="col" *ngIf="userRole === 'admin'">Balance</div>
-    <div
-      class="col btn add-button display-3"
-      (click)="addBalance(-1)"
-      *ngIf="userRole === 'admin'"
-    >
-      Update group balance
-    </div>
-  </div>
-  <div
-    *ngFor="
-      let emp of employees
-        | paginate
-          : {
-              id: 'foo',
-              itemsPerPage: 7,
-              currentPage: pageNumber
-            };
-      let i = index
-    "
-    class="p-2 m-3 row display-6 justify-content-center li-items"
-  >
-    <div class="col">{{ emp.username }}</div>
-    <div class="col">₹{{ emp.balance | number }}</div>
-    <div class="col btn add-button display-2" (click)="addBalance(i)">
-      Add Balance
-    </div>
-  </div> -->
-
+  <!-- 
   <div class="nav-pages">
     <div class="nav-pages-item" (click)="goBack()">
       <i
         [ngStyle]="{ visibility: !isBackDisabled ? 'visible' : 'hidden' }"
         class="fa-solid fa-chevron-left fa-lg"
-        style="color: #0d1b2a"
       ></i>
     </div>
     <div class="nav-pages-item">
@@ -92,7 +86,7 @@
     >
       <i class="fa-solid fa-chevron-right fa-lg" style="color: #0d1b2a"></i>
     </div>
-  </div>
+  </div> -->
 </div>
 
 <div id="popup1" class="overlay" *ngIf="isUpdateBalanceOpen">
@@ -117,3 +111,4 @@
     </div>
   </div>
 </div>
+<app-place-order></app-place-order>

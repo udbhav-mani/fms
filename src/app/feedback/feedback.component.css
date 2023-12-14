@@ -48,3 +48,50 @@ p {
   margin-top: 2rem;
   justify-content: space-evenly;
 }
+
+h2 {
+  width: 96%;
+  text-align: center;
+  border-bottom: 1px dashed var(--font-color);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  color: var(--font-color);
+  margin: 2rem;
+}
+
+h2 span {
+  color: var(--font-color);
+  background: var(--main-bg-color);
+  padding: 0 10px;
+  font-family: "Merriweather Sans", serif;
+  font-size: 20px;
+  width: 90%;
+}
+h2 .header-text {
+  font-size: 30px;
+}
+
+table.table-striped.borderless {
+  --bs-table-bg: #c0cecf;
+  --bs-table-border-color: #003835;
+  font-family: "Merriweather Sans", serif;
+  text-align: center;
+}
+
+td {
+  padding: 1rem;
+}
+
+.fdb-list-container {
+  margin: 2rem 5rem;
+}
+
+.stars {
+  text-align: left;
+}
+
+.no_fdb {
+  width: 400px;
+  /* margin-left: 30%; */
+  margin: 2rem 35%;
+}

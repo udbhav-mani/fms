@@ -28,7 +28,12 @@ import { ReviewMenuComponent } from './menu/review-menu/review-menu.component';
 import { RejectMenuComponent } from './menu/review-menu/reject-menu/reject-menu.component';
 import { ApproveMenuComponent } from './menu/approve-menu/approve-menu.component';
 import { AddFdbCriteriaComponent } from './menu/approve-menu/add-fdb-criteria/add-fdb-criteria.component';
-
+import { PlaceOrderComponent } from './order/place-order/place-order.component';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { RippleModule } from 'primeng/ripple';
+import { MessageService } from 'primeng/api';
+import { NgToastModule } from 'ng-angular-popup';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,8 +51,10 @@ import { AddFdbCriteriaComponent } from './menu/approve-menu/add-fdb-criteria/ad
     RejectMenuComponent,
     ApproveMenuComponent,
     AddFdbCriteriaComponent,
+    PlaceOrderComponent,
   ],
   imports: [
+    NgToastModule,
     NgxPaginationModule,
     BrowserModule,
     AppRoutingModule,
@@ -59,6 +66,8 @@ import { AddFdbCriteriaComponent } from './menu/approve-menu/add-fdb-criteria/ad
     MatInputModule,
     MatToolbarModule,
     MatDialogModule,
+    ButtonModule,
+    RippleModule,
   ],
   providers: [
     {
@@ -67,6 +76,7 @@ import { AddFdbCriteriaComponent } from './menu/approve-menu/add-fdb-criteria/ad
       multi: true,
     },
     MatDialog,
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })

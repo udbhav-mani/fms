@@ -1,62 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Glassmorphism login Form Tutorial in html css</title>
+<body>
+  <header>
+    <img src="assets\Fiesta-logo.png" alt="" class="logo-img" />
+  </header>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <!--Stylesheet-->
-  </head>
-  <body>
-    <header>
-      <img src="assets\Fiesta-logo.png" alt="" class="logo-img" />
-    </header>
-    <!-- <div class="background">
-      <div class="shape"></div>
-      <div class="shape"></div>
-    </div> -->
+  <div class="main-div">
+    <div class="form-div">
+      <form #authForm="ngForm">
+        <h2>Welcome</h2>
 
-    <div class="main-div">
-      <div class="form-div">
-        <form #authForm="ngForm">
-          <h2>Welcome</h2>
+        <label for="username">Username</label>
+        <div class="input-container">
+          <i class="fa fa-user icon"></i>
+          <input
+            type="text"
+            id="username"
+            ngModel
+            name="username"
+            pattern="^$|^[A-Za-z ]+"
+            required
+          />
+        </div>
 
-          <label for="username">Username</label>
-          <div class="input-container">
-            <i class="fa fa-user icon"></i>
-            <input type="text" id="username" ngModel name="username" required />
-          </div>
+        <label for="password">Password</label>
+        <div class="input-container">
+          <i class="fa fa-key icon"></i>
+          <input
+            type="password"
+            id="password"
+            ngModel
+            name="password"
+            required
+          />
+        </div>
 
-          <label for="password">Password</label>
-          <div class="input-container">
-            <i class="fa fa-key icon"></i>
-            <input
-              type="password"
-              id="password"
-              ngModel
-              name="password"
-              required
-            />
-          </div>
+        <button
+          [disabled]="!authForm.valid"
+          class="btn"
+          (click)="onSubmit(authForm)"
+        >
+          Log In
+        </button>
 
-          <!-- <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Username</mat-label>
-            <input matInput placeholder="" ngModel name="username" />
-          </mat-form-field>
-    
-          <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="" ngModel name="password" />
-          </mat-form-field> -->
-          <button class="btn" (click)="onSubmit(authForm)">Log In</button>
-        </form>
-      </div>
-      <div class="div-img">
-        <img src="\assets\login-img.svg" alt="" />
-      </div>
+        <!-- <pre>myForm.myName.$error = {{ authForm.password.$error | json }}</pre> -->
+        <!-- 
+        <div
+          ng-messages="authForm.username.$error"
+          style="color: maroon"
+          role="alert"
+        >
+          <div ng-message="required">You did not enter a field</div>
+          <div ng-message="pattern">Your field is too short</div>
+          <div ng-message="maxlength">Your field is too long</div>
+        </div> -->
+      </form>
     </div>
-  </body>
-</html>
+    <div class="div-img">
+      <img src="\assets\login-img.svg" alt="" />
+    </div>
+  </div>
+</body>

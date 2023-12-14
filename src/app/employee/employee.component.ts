@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { EmployeeService } from './employee.service';
 import { UserService } from 'src/shared/user.service';
+import { MenuService } from '../menu/menu.service';
 
 @Component({
   selector: 'app-employee',
@@ -10,19 +11,23 @@ import { UserService } from 'src/shared/user.service';
 export class EmployeeComponent {
   employees: any;
   pageNumber: number = 1;
-  isFrontDisabled: boolean = true;
+  isFrontDisabled: boolean = false;
   isBackDisabled: boolean = true;
   isUpdateBalanceOpen: boolean = false;
   amount: number;
   employeeDetail: any = null;
   userRole: string;
-  constructor(private empSer: EmployeeService, private userSer: UserService) {}
+  constructor(
+    private empSer: EmployeeService,
+    private menuSer: MenuService,
+    private userSer: UserService
+  ) {}
 
   ngOnInit() {
     this.userRole = this.userSer.user.role;
     this.empSer.get_employees().subscribe((response) => {
-      console.log(response);
       this.employees = response;
+      console.log(this.employees);
     });
   }
   goBack() {
@@ -57,5 +62,9 @@ export class EmployeeComponent {
       console.log('grpbalance');
     }
     this.isUpdateBalanceOpen = !this.isUpdateBalanceOpen;
+  }
+  openPlaceOrder(emp) {
+    this.empSer.placeOrderChanged.next(emp);
+    this.menuSer.placeOrderChanged.next(true);
   }
 }

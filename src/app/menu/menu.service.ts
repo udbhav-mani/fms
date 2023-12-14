@@ -9,6 +9,7 @@ export class MenuService {
   reviewMenuChanged = new BehaviorSubject(false);
   rejectMenuChanged = new BehaviorSubject(false);
   approveMenuChanged = new BehaviorSubject(false);
+  placeOrderChanged = new BehaviorSubject(false);
   menuState = new Subject();
 
   constructor(private httpClient: HttpClient) {}

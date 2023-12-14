@@ -6,10 +6,11 @@
 body {
   --main-bg-color: #c0cecf;
   --font-color: #003835;
-  font-family: "Kalnia", serif;
+  font-family: "Merriweather Sans", serif;
 }
 
 .overlay {
+  color: #003835;
   position: fixed;
   top: 0;
   left: 0;
@@ -20,21 +21,19 @@ body {
   visibility: visible;
   opacity: 1;
   z-index: 99;
+  font-family: "Merriweather Sans";
 }
 
 .popup {
-  margin: 70px auto;
-  padding: 20px;
+  margin: 100px auto;
+  padding: 5px;
   background: var(--main-bg-color);
   border-radius: 5px;
-  width: 50%;
+  width: 30%;
   position: relative;
   transition: all 5s ease-in-out;
 }
 
-.popup h2 {
-  color: #0d1b2a;
-}
 .popup .close {
   position: absolute;
   top: 20px;
@@ -46,14 +45,14 @@ body {
   color: #333;
 }
 .popup .close:hover {
-  color: #0d1b2a;
+  color: maroon;
 }
 .popup .content {
-  max-height: 30%;
+  /* max-height: 30%; */
   overflow: auto;
 }
 .form {
-  width: 75%;
+  width: 95%;
 }
 .form-group {
   display: flex;
@@ -61,22 +60,38 @@ body {
 }
 
 .form-label {
-  font-family: "Merriweather Sans";
   margin-bottom: 0px;
   padding-top: 0.3rem;
 }
-
-.display-6 {
-  font-family: "Teko", sans-serif;
-}
 .form-control {
-  flex-grow: 1;
-}
-.btn-primary {
-}
-.btn-primary:disabled {
-  background: #0d1b2a34;
   border: 0px;
+  text-align: center;
+}
+
+.header-text {
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  font-size: 30px;
+}
+
+.btn-outline-danger {
+  background-color: var(--main-bg-color);
+  color: red;
+}
+
+.h4 {
+  margin: auto;
+  width: 85%;
+}
+.items {
+  margin-top: 32px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 0px 8px;
+  font-size: 20px;
+  /* border-radius: 50%; */
 }
 
 .btns {
@@ -84,3 +99,11 @@ body {
   flex-direction: row;
   justify-content: flex-end;
 }
+
+input.ng-invalid.ng-touched {
+  border-left: red 2px solid;
+}
+.sbmt {
+  padding: 3px 8px;
+}
+

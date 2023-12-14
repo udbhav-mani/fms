@@ -17,7 +17,6 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const user = this.userSer.user;
-    console.log(this.userSer.user);
 
     if (!user.token) {
       return next.handle(req);

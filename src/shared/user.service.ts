@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   constructor(private router: Router) {}
-  user: UserModel = new UserModel(null, null, '', '', null, '');
+  user: UserModel = new UserModel(null, null, '', '', null, '', '');
 
   get token() {
     if (this.user.token) {
@@ -21,6 +21,7 @@ export class UserModel {
     public role: string,
     public userName: string,
     public expiresIn: any,
+    public name: any,
     public token: any
   ) {}
 }

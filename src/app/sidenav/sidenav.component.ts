@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { UserModel, UserService } from 'src/shared/user.service';
+import { ToastService } from 'src/shared/toast.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -13,7 +14,8 @@ export class SidenavComponent {
     private router: Router,
     private route: ActivatedRoute,
     private authSer: AuthService,
-    private userSer: UserService
+    private userSer: UserService,
+    private toastSer: ToastService
   ) {}
 
   user: UserModel;
@@ -26,11 +28,11 @@ export class SidenavComponent {
     f_emp: [
       ['View Menu', 'menu', 'fa-solid fa-utensils'],
       ['Place Order', 'order', 'fa-solid fa-cart-shopping'],
-      ['TopUp Card', 'topup_card', 'fa-regular fa-credit-card'],
+      // ['TopUp Card', 'topup_card', 'fa-regular fa-credit-card'],
     ],
     emp: [
       ['View Menu', 'menu', 'fa-solid fa-utensils'],
-      ['Place Order', 'order', 'fa-solid fa-cart-shopping'],
+      // ['Place Order', 'order', 'fa-solid fa-cart-shopping'],
       ['Add feedback', 'add-fdb', 'fa-solid fa-user'],
     ],
   };
@@ -44,6 +46,7 @@ export class SidenavComponent {
   }
 
   logout() {
+    this.toastSer.showError();
     this.authSer.logout();
     localStorage.removeItem('userData');
     this.router.navigate(['/auth']);

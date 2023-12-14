@@ -17,7 +17,7 @@
   min-width: 18rem !important;
   font-size: small;
   background-color: var(--main-bg-color);
-  height: 100vh;
+  height: 91vh;
   position: sticky;
   top: 0px;
   left: 0px;
@@ -62,8 +62,23 @@
   right: 3%;
   margin-top: 20px;
 }
-.logout-icon img:hover {
+.logout-icon:hover + .help {
   transform: scale(1.3);
+  display: block;
+}
+.help {
+  display: none;
+  position: absolute;
+  right: 35px;
+  top: 65px;
+  background-color: #a8cdd0;
+  border-radius: 10px;
+  font-size: smaller;
+  width: 60px;
+  background-color: #2f2e41;
+  color: var(--font-color-lt);
+  text-align: center;
+  padding: 5px;
 }
 
 .icon img {

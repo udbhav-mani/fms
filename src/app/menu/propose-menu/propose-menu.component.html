@@ -1,62 +1,67 @@
 <div id="popup1" class="overlay" *ngIf="isProposedMenuOpen">
   <div class="popup">
-    <h2 class="display-6 text-center">Propose new menu</h2>
+    <h1 class="header-text text-center">Propose new menu</h1>
     <a class="close" (click)="closeDialog()">&times;</a>
     <div class="content">
       <div
         class="dialog-box d-flex flex-column justify-content-center align-items-center p-2"
       >
         <form #myForm="ngForm" (ngSubmit)="onSubmit()">
-          <div class="form-group mb-3">
-            <label for="mmddyyyy" class="form-label text-muted">Date: </label>
+          <div class="input-group mb-3">
+            <label for="mmddyyyy" class="input-group-text text-muted w-25 mr-3"
+              >Date:</label
+            >
             <input
               type="date"
               id="date"
               name="date"
               ngModel
               required
-              class="form-control border-primary"
+              class="form-control w-25 flex-grow-1"
             />
           </div>
 
+          <div class="items d-flex flex-end">
+            <h2 class="h4">ITEMS</h2>
+            <button type="button" (click)="addItem()" class="btn">+</button>
+          </div>
+
           <div *ngFor="let item of items; let i = index">
-            <div class="form-group mb-3 d-flex flex-row justify-content-evenly">
-              <label
-                for="newItem-{{ i }}"
-                class="form-label text-muted w-25 mr-3"
-                >Item {{ i + 1 }}:</label
-              >
+            <div
+              class="input-group mb-3 d-flex flex-row justify-content-between"
+            >
+              <span class="input-group-text">Item {{ i + 1 }}:</span>
               <input
                 type="text"
                 id="newItem-{{ i }}"
                 name="newItem-{{ i }}"
                 ngModel
                 required
-                class="form-control border-primary w-25 flex-grow-1"
+                pattern="^$|^[A-Za-z ]+"
+                class="form-control flex-grow-1"
               />
               <button
                 *ngIf="items.length > 1"
                 id="newItem-{{ i }}"
                 type="button"
                 (click)="removeItem(i)"
-                class="btn btn-sm btn-outline-danger ms-3"
+                class="btn btn-sm btn-outline-danger input-group-append"
               >
-                &times;
+                <i class="fa-regular fa-trash-can"></i>
               </button>
             </div>
           </div>
 
-          <button type="button" (click)="addItem()" class="btn me-2">
-            Add Item
-          </button>
-          <button
-            type="submit"
-            [disabled]="myForm.invalid"
-            class="btn"
-            (click)="onSubmit(myForm)"
-          >
-            Submit
-          </button>
+          <div class="btns">
+            <button
+              type="submit"
+              [disabled]="myForm.invalid"
+              class="btn sbmt"
+              (click)="onSubmit(myForm)"
+            >
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>

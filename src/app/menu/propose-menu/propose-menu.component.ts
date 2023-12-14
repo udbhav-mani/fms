@@ -9,7 +9,14 @@ import { MenuService } from '../menu.service';
 })
 export class ProposeMenuComponent {
   isProposedMenuOpen;
-  constructor(private menuSer: MenuService) {}
+  getTomorrowDate() {
+    return new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
+  }
+
+  tomorrowDate = this.getTomorrowDate();
+  constructor(private menuSer: MenuService) {
+    this.tomorrowDate = this.getTomorrowDate();
+  }
   ngOnInit() {
     this.menuSer.proposeMenuChanged.subscribe((data) => {
       this.isProposedMenuOpen = data;

@@ -12,8 +12,7 @@
 aside {
   color: var(--font-color-lt);
   padding-left: 20px;
-
-  height: 100vh;
+  height: 91vh;
   background: linear-gradient(210deg, #003835 40%, #c0cecf);
   overflow: hidden;
   border-top: 1.5px var(--font-color-lt) solid;

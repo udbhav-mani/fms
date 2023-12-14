@@ -15,6 +15,7 @@ html,
 body {
   height: 100%;
   background-color: var(--main-bg-color);
+  overflow: hidden;
 }
 body {
   margin: 0;
@@ -27,6 +28,10 @@ body {
 }
 .btn:hover {
   background-color: #2f2e41;
+  color: var(--font-color-lt);
+}
+.btn:disabled {
+  background-color: #2f2e419f;
   color: var(--font-color-lt);
 }
 

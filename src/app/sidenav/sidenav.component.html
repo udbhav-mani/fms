@@ -1,5 +1,8 @@
 <aside>
-  <p class="h3">Hello, {{ user.userName != "" ? user.userName : "User" }}</p>
+  <p class="h3">
+    Hello,
+    {{ (user.name != "" ? user.name.split(" ")[0] : "User") | titlecase }}
+  </p>
   <div *ngFor="let i of navigation[role]" class="row justify-content-center h4">
     <a
       class="butn"

@@ -1,32 +1,50 @@
-<div class="fdb-container pb-5">
-  <div class="fdb-header text-center p-5">
-    <p class="display-4">Feedbacks📝</p>
+<div class="fdb-container pb-5" *ngIf="!!feedbacks; else noFeedbackAvailable">
+  <div class="fdb-header">
+    <h2>
+      <span class="header-text">&nbsp; Feedbacks &nbsp;</span>
+    </h2>
   </div>
 
-  <div class="p-2 mx-3 row rounded justify-content-center li-items-heading">
-    <div class="col">Criteria</div>
-    <div class="col">Rating</div>
-    <div class="col">Reviews</div>
-  </div>
-  <div
-    *ngFor="
-      let feedback of feedbacks
-        | paginate
-          : {
-              id: 'foo',
-              itemsPerPage: 7,
-              currentPage: pageNumber
-            }
-    "
-    class="p-2 mx-3 my-2 row rounded display-6 justify-content-center li-items"
-  >
-    <div class="col">{{ feedback.criteria }}</div>
+  <div class="fdb-list-container">
+    <div class="fdb-list-data">
+      <table class="table table-striped borderless">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Criteria</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Reviews</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let feedback of feedbacks
+                | paginate
+                  : {
+                      id: 'foo',
+                    itemsPerPage: 7,
+                      currentPage: pageNumber,
 
-    <div class="col">
-      <span *ngFor="let i of getArray(feedback.feedback)">⭐</span>
+                    };
+              let i = index
+            "
+          >
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ feedback.criteria }}</td>
+            <td>
+              <span *ngFor="let i of getArray(feedback.feedback)" class="stars"
+                ><i class="fa-solid fa-star" style="color: #003835"></i
+                >&nbsp;</span
+              >
+            </td>
+            <td>{{ feedback.comments | titlecase }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col">{{ feedback.comments | titlecase }}</div>
   </div>
+  <!-- 
   <div class="nav-pages">
     <div class="nav-pages-item" (click)="goBack()">
       <i
@@ -45,5 +63,15 @@
     >
       <i class="fa-solid fa-chevron-right fa-lg" style="color: #0d1b2a"></i>
     </div>
-  </div>
+  </div> -->
 </div>
+
+<ng-template #noFeedbackAvailable>
+  <h2>
+    <span class="header-text">&nbsp; No feedbacks available &nbsp;</span>
+  </h2>
+  <img src="assets\no_feedbacks.svg" class="no_fdb" alt="" />
+  <h2>
+    <span class="header-text">&nbsp; * * * * &nbsp;</span>
+  </h2>
+</ng-template>

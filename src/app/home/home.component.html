@@ -1,10 +1,13 @@
 <div class="header">
   <div class="icon"><img src="assets\Fiesta-lt.png" alt="" /></div>
   <div class="logout-icon">
-    <img src="assets\logout.png" (click)="logout()" />
+    <img class="logout-icon-img" src="assets\logout.png" (click)="logout()" />
   </div>
+  <div class="help">Logout</div>
 </div>
 <div class="main-container">
   <div class="sidenav" opened><app-sidenav></app-sidenav></div>
-  <div class="main-content"><router-outlet></router-outlet></div>
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
 </div>
