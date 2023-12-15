@@ -19,11 +19,12 @@ body {
   border-radius: 30px;
   background-color: var(--font-color);
   min-width: 100px;
-  margin: 10px 20px;
+  margin: 10px 10px;
   cursor: pointer;
 }
 .chip-add {
   min-width: 50px;
+  
 }
 .input-group {
   margin-top: 2rem;
@@ -36,4 +37,8 @@ body {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
+}
+
+input.ng-invalid.ng-touched {
+  border: red 2px solid;
 }

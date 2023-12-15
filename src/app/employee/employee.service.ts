@@ -15,4 +15,11 @@ export class EmployeeService {
       params: new HttpParams().append('user_id', id),
     });
   }
+
+  update_balance(data) {
+    return this.httpClient.put('http://127.0.0.1:8000/balance/user', data);
+  }
+  place_order(data) {
+    return this.httpClient.post('http://127.0.0.1:8000/orders', data);
+  }
 }

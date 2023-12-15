@@ -3,6 +3,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
+body {
+  --main-bg-color: #c0cecf;
+  --font-color: #003835;
+  --font-color-lt: #c0cecf;
+}
+
 p {
   font-family: "Teko", sans-serif;
   color: #0d1b2a;
@@ -10,10 +16,7 @@ p {
 
 .container {
   color: #e0e1dd;
-  /* background-color: rgba(172, 209, 246, 0.416); */
   border-radius: 20px;
-
-  /* border:   #eb1111 2px solid; */
 }
 .requests-notify {
   animation-name: popout;

@@ -48,9 +48,10 @@ export class AddFdbCriteriaComponent {
     this.newCriteriaBeingAdded = !this.newCriteriaBeingAdded;
   }
   addNewCriteria() {
-    this.criteriaSer.add_criteria([this.newCriteria]).subscribe((data) => {
-      console.log(data);
-    });
+    if (this.newCriteria)
+      this.criteriaSer.add_criteria([this.newCriteria]).subscribe((data) => {
+        console.log(data);
+      });
     this.criteria.push({
       id: null,
       criteria: this.newCriteria,
@@ -60,11 +61,10 @@ export class AddFdbCriteriaComponent {
     this.newCriteria = '';
     this.newCriteriaBeingAdded = !this.newCriteriaBeingAdded;
   }
-  addFdbCriteria() {
+  addFdbCriteria(myForm) {
     this.criteriaSer
-      .add_menu_criteria(this.selectedCriteria)
+      .add_menu_criteria(myForm.value.newCriteria)
       .subscribe((response) => {
-        console.log(response);
         this.menuSer.menuState.next('published');
         this.menuSer.approveMenuChanged.next(false);
       });

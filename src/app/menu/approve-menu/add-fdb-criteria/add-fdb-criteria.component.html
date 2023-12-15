@@ -10,19 +10,30 @@
     </div>
     <div class="chips chip-add text-center" (click)="addNewChip()">+</div>
   </div>
-  <div class="input-group mb-3" *ngIf="newCriteriaBeingAdded">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="New Criteria"
-      [(ngModel)]="newCriteria"
-    />
-    <div class="input-group-append">
-      <button class="btn" type="button" (click)="addNewCriteria()">Add</button>
+  <form #myForm="ngForm">
+    <div class="input-group mb-3" *ngIf="newCriteriaBeingAdded">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="New Criteria"
+        ngModel
+        name="newCriteria"
+        pattern="^$|^[A-Za-z]+"
+      />
+      <div class="input-group-append">
+        <button class="btn" type="button" (click)="addNewCriteria()">
+          Add
+        </button>
+      </div>
     </div>
-  </div>
+  </form>
   <div class="btns">
-    <button class="btn" type="button" (click)="addFdbCriteria()">
+    <button
+      class="btn"
+      type="button"
+      [disabled]="myForm.invalid"
+      (click)="addFdbCriteria(myForm)"
+    >
       Add criteria
     </button>
   </div>

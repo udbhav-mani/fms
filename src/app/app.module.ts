@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
+import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -34,6 +35,8 @@ import { ToastModule } from 'primeng/toast';
 import { RippleModule } from 'primeng/ripple';
 import { MessageService } from 'primeng/api';
 import { NgToastModule } from 'ng-angular-popup';
+import { AddFeedbackComponent } from './feedback/add-feedback/add-feedback.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +55,8 @@ import { NgToastModule } from 'ng-angular-popup';
     ApproveMenuComponent,
     AddFdbCriteriaComponent,
     PlaceOrderComponent,
+    AddFeedbackComponent,
+    NotFoundComponent,
   ],
   imports: [
     NgToastModule,
@@ -68,6 +73,7 @@ import { NgToastModule } from 'ng-angular-popup';
     MatDialogModule,
     ButtonModule,
     RippleModule,
+    MatIconModule,
   ],
   providers: [
     {

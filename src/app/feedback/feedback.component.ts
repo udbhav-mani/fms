@@ -8,20 +8,27 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./feedback.component.css'],
 })
 export class FeedbackComponent {
-  feedbacks: any = null;
+  feedbacks: any = [];
   pageNumber: number = 1;
   isFrontDisabled: boolean = false;
   isBackDisabled: boolean = true;
+  isPageLoading: boolean;
+  feedbackCriteria: string[] = [];
+  selectedFilter;
 
   constructor(
     private feedbackSer: FeedbackService,
     private toastSer: NgToastService
-  ) {}
-
-  ngOnInit() {
+  ) {
+    this.isPageLoading = true;
     this.feedbackSer.get_feedbacks().subscribe({
       next: (response) => {
         this.feedbacks = response;
+        for (let feedback of this.feedbacks) {
+          if (!this.feedbackCriteria.includes(feedback.criteria)) {
+            this.feedbackCriteria.push(feedback.criteria);
+          }
+        }
       },
       error: (err) => {
         if (err.status === 400) {
@@ -37,22 +44,17 @@ export class FeedbackComponent {
         }
       },
     });
+    this.isPageLoading = false;
   }
+
+  ngOnInit() {}
   getArray(num: string) {
     return new Array(parseInt(num));
   }
-  goBack() {
-    this.pageNumber--;
-    this.isFrontDisabled = false;
-    if (this.pageNumber < 2) {
-      this.isBackDisabled = true;
+  filterFeedbacks(criteria: string) {
+    if (!criteria) {
+      return this.feedbacks;
     }
-  }
-  goAhead() {
-    this.pageNumber++;
-    this.isBackDisabled = false;
-    if (this.pageNumber > this.feedbacks.length / 7) {
-      this.isFrontDisabled = true;
-    }
+    return this.feedbacks.filter((feedback) => feedback.criteria === criteria);
   }
 }

@@ -1,25 +1,21 @@
 <div id="popup1" class="overlay" *ngIf="isReviewMenuOpen">
   <div class="popup">
-    <div class="row text-center">
-      <p class="display-6">{{ currentMenu.date }}</p>
-    </div>
+    <h1 class="header-text text-center">Review menu</h1>
     <a class="close" (click)="closeDialog()">&times;</a>
     <div class="content">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-4" *ngFor="let item of currentMenu.items">
-            <div class="text-center h4 item">
-              {{ item | titlecase }}
-            </div>
-          </div>
+      <div class="items-container px-5 mx-5 py-4 text-center">
+        <ul class="list-group text-center">
+          <li class="list-group-item" *ngFor="let item of currentMenu.items">
+            -&nbsp;&nbsp; {{ item | titlecase }} &nbsp;&nbsp;-
+          </li>
+        </ul>
+      </div>
+      <div class="btns">
+        <div>
+          <button class="btn mx-3 h5" (click)="acceptMenu()">Accept</button>
         </div>
-        <div class="btns">
-          <div>
-            <button class="btn mx-3 h5" (click)="acceptMenu()">Accept</button>
-          </div>
-          <div>
-            <button class="btn h5" (click)="rejectMenu()">Reject</button>
-          </div>
+        <div>
+          <button class="btn h5" (click)="rejectMenu()">Reject</button>
         </div>
       </div>
     </div>

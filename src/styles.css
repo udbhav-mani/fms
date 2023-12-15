@@ -6,6 +6,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Young+Serif&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
 * {
   --main-bg-color: #c0cecf;
   --font-color: #003835;
@@ -49,6 +53,8 @@ body {
 }
 
 .popup {
+  font-family: "Merriweather Sans", serif;
+
   margin: 70px auto;
   padding: 20px;
   background: var(--main-bg-color);
@@ -96,4 +102,7 @@ body {
 .popup .content {
   max-height: 30%;
   overflow: auto;
+}
+input.ng-invalid.ng-touched {
+  border-left: red 2px solid;
 }

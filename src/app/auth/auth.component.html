@@ -14,6 +14,7 @@
           <input
             type="text"
             id="username"
+            class="inp"
             ngModel
             name="username"
             pattern="^$|^[A-Za-z ]+"
@@ -25,13 +26,34 @@
         <div class="input-container">
           <i class="fa fa-key icon"></i>
           <input
-            type="password"
+            class="inp"
+            [type]="hide ? 'password' : 'text'"
             id="password"
             ngModel
             name="password"
             required
           />
+          <div (click)="hideUnhide()">
+            <i class="fa-solid fa-eye" *ngIf="hide; else notHidden"></i>
+            <ng-template #notHidden
+              ><i class="fa-solid fa-eye-slash"></i
+            ></ng-template>
+          </div>
         </div>
+
+        <!-- <div class="remember-me">
+          <div class="form-check">
+            <input
+              class="inp-check"
+              type="checkbox"
+              value=""
+              id=""
+              ngModel
+              name="check"
+            />
+            <label class="form-check-label" for=""> Remember me </label>
+          </div>
+        </div> -->
 
         <button
           [disabled]="!authForm.valid"

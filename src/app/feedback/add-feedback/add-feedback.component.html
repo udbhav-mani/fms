@@ -1,0 +1,69 @@
+<div class="fdb-container pb-5">
+  <div class="fdb-header">
+    <h2>
+      <span class="header-text">&nbsp; Add feedback &nbsp;</span>
+    </h2>
+
+    <div class="fdb-content">
+      <div class="fdb-criteria-header mb-3">
+        <div class="w-15">Criteria</div>
+        <div class="w-25 text-center">Ratings(Out of 5)</div>
+        <div class="w-25 text-center">Reviews</div>
+      </div>
+      <form #feedbackForm="ngForm" (submit)="onSubmitFeedback(feedbackForm)">
+        <div *ngFor="let criteria of fdbCriteria">
+          <div class="fdb-criteria-item">
+            <label for="{{ criteria.cr_id }}" class="input-text cr-text">{{
+              criteria.criteria | titlecase
+            }}</label>
+            <input
+              type="number"
+              min="1"
+              max="5"
+              id="{{ criteria.cr_id }}"
+              name="{{ criteria.cr_id }}"
+              ngModel
+              required
+              class="form-control w-25"
+            />
+            <!-- <fieldset class="rating">
+              <ng-container
+                *ngFor="let item of [1, 2, 3, 4, 5]"
+                ngModel
+                name="{{ criteria.cr_id }}"
+              >
+                <input
+                  type="radio"
+                  id="star{{ item }}"
+                  name="rating"
+                  value="{{ item }}"
+                  [(ngModel)]="selectedRating[item - 1]"
+                /><label class="full" for="star{{ item }}"></label>
+              </ng-container>
+            </fieldset> -->
+
+            <input
+              id="comment_{{ criteria.cr_id }}"
+              ngModel
+              name="comment_{{ criteria.cr_id }}"
+              class="form-control w-25"
+            />
+          </div>
+        </div>
+
+        <div class="btns">
+          <button
+            class="btn me-5"
+            type="submit"
+            [disabled]="feedbackForm.invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- <h2>
+      <span class="header-text mt-5"> * * * * * &nbsp;</span>
+    </h2> -->
+  </div>
+</div>

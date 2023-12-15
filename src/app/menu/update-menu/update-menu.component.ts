@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { delay } from 'rxjs';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-update-menu',
@@ -16,7 +17,7 @@ export class UpdateMenuComponent {
   newItemAdmin: string = '';
   isDiscarded: boolean = false;
 
-  constructor(private menuSer: MenuService) {}
+  constructor(private menuSer: MenuService, private toastSer: NgToastService) {}
   ngOnInit() {
     this.menuSer.updateMenuChanged.subscribe((data) => {
       this.isUpdateMenu = data;
@@ -43,9 +44,21 @@ export class UpdateMenuComponent {
   discardMenu() {
     this.menuSer
       .updateMenuStatus(this.rejectedMenu.menu_id, 'discarded', null)
-      .subscribe((response) => {
-        this.menuSer.menuState.next('discarded');
-        this.menuSer.updateMenuChanged.next(false);
+      .subscribe({
+        next: (response) => {
+          this.menuSer.menuState.next('discarded');
+          this.menuSer.updateMenuChanged.next(false);
+          this.toastSer.success({
+            summary: 'Menu Discarded successfully.',
+            detail: 'Success',
+          });
+        },
+        error: (err) => {
+          this.toastSer.error({
+            summary: err.error.error.message,
+            detail: 'An error occured.',
+          });
+        },
       });
   }
 
@@ -53,14 +66,23 @@ export class UpdateMenuComponent {
     this.menuSer.updateMenuChanged.next(false);
   }
   onSubmit() {
-    console.log(this.rejectedMenu.menu_id, this.newItemAdmin, this.oldItem);
-
     this.menuSer
       .updateMenu(this.rejectedMenu.menu_id, this.newItemAdmin, this.oldItem)
-      .subscribe((response) => {
-        console.log(response);
-        this.menuSer.menuState.next('pending');
-        this.menuSer.updateMenuChanged.next(false);
+      .subscribe({
+        next: (response) => {
+          this.menuSer.menuState.next('pending');
+          this.menuSer.updateMenuChanged.next(false);
+          this.toastSer.success({
+            summary: 'New Menu suggested successfully.',
+            detail: 'Success',
+          });
+        },
+        error: (err) => {
+          this.toastSer.error({
+            summary: err.error.error.message,
+            detail: 'An error occured.',
+          });
+        },
       });
   }
 }

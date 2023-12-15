@@ -1,13 +1,13 @@
 <div id="popup1" class="overlay" *ngIf="isOrderMenuOpen">
   <div class="popup">
-    <h2 class="display-6 text-center">Place Order</h2>
+    <h1 class="header-text text-center">Review menu</h1>
     <a class="close" (click)="closeDialog()">&times;</a>
 
     <div class="content">
       <h2 class="h5 mt-3 text-center">
-        Current Balance - ₹{{ currentEmployee.balance }}
+        Current Balance : ₹{{ currentEmployee.balance }}
       </h2>
-      <h2 class="h5 mt-3 text-center">Total Bill - ₹137</h2>
+      <h2 class="h5 mt-3 text-center">Total Bill : ₹137</h2>
       <div class="btns mb-3">
         <button class="btn" type="button" (click)="placeOrder()">
           Place Order

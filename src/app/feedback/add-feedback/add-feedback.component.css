@@ -1,0 +1,108 @@
+.fdb-container {
+  color: #e0e1dd;
+  /* background-color: rgba(172, 209, 246, 0.416); */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  width: 96%;
+  text-align: center;
+  border-bottom: 1px dashed var(--font-color);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+  color: var(--font-color);
+  margin: 2rem;
+}
+
+h2 span {
+  color: var(--font-color);
+  background: var(--main-bg-color);
+  padding: 0 10px;
+  font-family: "Merriweather Sans", serif;
+  font-size: 20px;
+  width: 90%;
+}
+h2 .header-text {
+  font-size: 30px;
+}
+
+.cr-text {
+  width: 10%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.fdb-content {
+  width: 75%;
+  margin: 2rem auto;
+  font-family: "Merriweather Sans", serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.fdb-criteria-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color: var(--font-color);
+  margin: 20px auto;
+}
+.btns {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.fdb-criteria-header {
+  margin-top: 2rem;
+  color: var(--font-color);
+  font-size: larger;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.rating {
+  border: none;
+}
+
+.rating > input {
+  display: none;
+}
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label {
+  color: #ddd;
+  float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label {
+  color: var(--font-color);
+} /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label {
+  color: #ffed85;
+}
+
+input.ng-invalid.ng-touched {
+  border: red 2px solid;
+}

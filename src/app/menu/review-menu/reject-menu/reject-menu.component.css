@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko&display=swap");
-
-.date-input {
-  margin: 2rem 12rem;
+body {
+  --main-bg-color: #c0cecf;
+  --font-color: #003835;
+  --font-color-lt: #c0cecf;
 }
 
 .overlay {
@@ -20,16 +21,14 @@
 .popup {
   margin: 70px auto;
   padding: 20px;
-  background: #dcecfb;
+  background: var(--main-bg-color);
   border-radius: 5px;
-  width: 50%;
+  width: 30%;
   position: relative;
   transition: all 5s ease-in-out;
+  color: var(--font-color);
 }
 
-.popup h2 {
-  color: #0d1b2a;
-}
 .popup .close {
   position: absolute;
   top: 20px;
@@ -55,87 +54,23 @@
 }
 
 .form-label {
-  width: 25%;
+  width: 40%;
   margin-right: 15px;
   font-family: "Merriweather Sans";
 }
 
-.display-6 {
-  font-family: "Teko", sans-serif;
-}
-.form-control {
-  flex-grow: 1;
-}
-.btn-primary {
-  background: #0d1b2a;
-  border: 0px;
-}
-.btn-primary:disabled {
-  background: #0d1b2a34;
-  border: 0px;
-}
-
-p {
-  font-family: "Teko", sans-serif;
-  color: #0d1b2a;
-}
-
-.container {
-  color: #e0e1dd;
-  /* background-color: rgba(172, 209, 246, 0.416); */
-  border-radius: 20px;
-
-  /* border:   #eb1111 2px solid; */
-}
-.requests-notify {
-  animation-name: popout;
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-}
-.p-2 {
-  font-family: "Merriweather Sans", serif;
-  background-image: linear-gradient(45deg, rgb(44, 79, 117), #6ab4f5);
-  font-size: 1.5rem;
-  border: #0d1b2a 2px solid;
-
-  /* background-color: #415a77;   */
-}
-
-.item {
-  border: #0d1b2a 2px solid;
-  border-radius: 20px;
-  color: #0d1b2a;
-  padding: 1rem;
+.header-text {
+  margin-top: 1.5rem;
   margin-bottom: 1rem;
-  background-color: #fff;
+  font-size: 30px;
 }
 
-.form-group {
-  margin-bottom: 15px;
+.btns {
   display: flex;
   flex-direction: row;
+  justify-content: end;
 }
 
-.form-label {
-  width: 25%;
-  margin-right: 15px;
-  font-family: "Merriweather Sans";
-  color: #0d1b2a;
-}
-
-.display-6 {
-  font-family: "Teko", sans-serif;
-}
-.form-control {
-  flex-grow: 1;
-  border: #0d1b2a 2px solid;
-}
-.btn-primary {
-  background-color: #1c3b5c;
-  color: rgb(255, 255, 255);
-  font-family: "Merriweather Sans", serif;
-}
-.btn-primary:disabled {
-  background: #0d1b2a34;
-  border: 0px;
+input.ng-invalid.ng-touched {
+  border: red 2px solid;
 }

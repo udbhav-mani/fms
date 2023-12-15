@@ -1,53 +1,43 @@
 <div id="popup1" class="overlay" *ngIf="isRejectMenuOpen">
   <div class="popup">
-    <div class="row text-center">
-      <p class="display-6">Select menu item to update</p>
-    </div>
+    <h1 class="header-text text-center">Reject menu</h1>
     <a class="close" (click)="closeDialog()">&times;</a>
     <div class="content">
-      <div class="container">
-        <form #itemForm="ngForm">
-          <label class="form-label" for="item">Select an item:</label>
-          <select
-            name="item"
-            id="item"
-            [(ngModel)]="selectedItem"
-            class="form-control"
-            required
-          >
-            <option *ngFor="let item of currentMenu.items" [value]="item">
-              {{ item }}
-            </option>
-          </select>
-          <br />
-          <label class="form-label" for="newItem">Enter new item:</label>
-          <input
-            type="text"
-            name="newItem"
-            id="newItem"
-            [(ngModel)]="newItem"
-            required
-            class="form-control"
-          />
-          <br />
-          <label class="form-label" for="additionalInfo">Comments:</label>
-          <input
-            type="text"
-            name="additionalInfo"
-            id="additionalInfo"
-            [(ngModel)]="additionalInfo"
-            class="form-control"
-          />
-          <br />
-          <button
-            class="btn btn-primary"
-            type="button"
-            (click)="onSubmit(itemForm)"
-          >
+      <form #itemForm="ngForm">
+        <label class="form-label" for="item">Select an item:</label>
+        <select name="item" id="item" ngModel class="form-control" required>
+          <option *ngFor="let item of currentMenu.items" [value]="item">
+            {{ item }}
+          </option>
+        </select>
+        <br />
+        <label class="form-label" for="newItem">Enter new item:</label>
+        <input
+          type="text"
+          name="newItem"
+          id="newItem"
+          ngModel
+          required
+          class="form-control"
+          pattern="^$|^[A-Za-z ]+"
+        />
+        <br />
+        <label class="form-label" for="additionalInfo">Comments:</label>
+        <input
+          type="text"
+          name="additionalInfo"
+          id="additionalInfo"
+          ngModel
+          class="form-control"
+          pattern="^$|^[A-Za-z ]+"
+        />
+        <br />
+        <div class="btns">
+          <button class="btn" type="button" (click)="onSubmit(itemForm)">
             Submit
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>

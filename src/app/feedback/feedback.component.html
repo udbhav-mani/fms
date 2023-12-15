@@ -6,6 +6,17 @@
   </div>
 
   <div class="fdb-list-container">
+    <div class="filter input-group mb-3">
+      <select
+        class="form-select form-control"
+        [(ngModel)]="selectedFilter"
+        style="cursor: pointer"
+      >
+        <option value="">All Feedbacks</option>
+        <option *ngFor="let option of feedbackCriteria">{{ option }}</option>
+      </select>
+    </div>
+
     <div class="fdb-list-data">
       <table class="table table-striped borderless">
         <thead>
@@ -19,13 +30,8 @@
         <tbody>
           <tr
             *ngFor="
-              let feedback of feedbacks
-                | paginate
-                  : {
-                      id: 'foo',
-                    itemsPerPage: 7,
-                      currentPage: pageNumber,
-
+              let feedback of filterFeedbacks(selectedFilter) | paginate
+                  : {itemsPerPage: 7, currentPage: pageNumber,
                     };
               let i = index
             "
@@ -42,36 +48,24 @@
           </tr>
         </tbody>
       </table>
+      <pagination-controls
+        class="text-center pagi"
+        (pageChange)="pageNumber = $event"
+        previousLabel="Previous"
+        nextLabel="Next"
+      ></pagination-controls>
     </div>
   </div>
-  <!-- 
-  <div class="nav-pages">
-    <div class="nav-pages-item" (click)="goBack()">
-      <i
-        [ngStyle]="{ visibility: !isBackDisabled ? 'visible' : 'hidden' }"
-        class="fa-solid fa-chevron-left fa-lg"
-        style="color: #0d1b2a"
-      ></i>
-    </div>
-    <div class="nav-pages-item">
-      <p class="h4">Page-{{ pageNumber }}</p>
-    </div>
-    <div
-      [ngStyle]="{ visibility: !isFrontDisabled ? 'visible' : 'hidden' }"
-      class="nav-pages-item"
-      (click)="goAhead()"
-    >
-      <i class="fa-solid fa-chevron-right fa-lg" style="color: #0d1b2a"></i>
-    </div>
-  </div> -->
 </div>
 
 <ng-template #noFeedbackAvailable>
-  <h2>
-    <span class="header-text">&nbsp; No feedbacks available &nbsp;</span>
-  </h2>
-  <img src="assets\no_feedbacks.svg" class="no_fdb" alt="" />
-  <h2>
-    <span class="header-text">&nbsp; * * * * &nbsp;</span>
-  </h2>
+  <ng-container *ngIf="!isPageLoading">
+    <h2>
+      <span class="header-text">&nbsp; No feedbacks available &nbsp;</span>
+    </h2>
+    <img src="assets\no_feedbacks.svg" class="no_fdb" alt="" />
+    <h2>
+      <span class="header-text">&nbsp; * * * * &nbsp;</span>
+    </h2>
+  </ng-container>
 </ng-template>

@@ -7,6 +7,8 @@ import { MenuComponent } from './menu/menu.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ProposeMenuComponent } from './menu/propose-menu/propose-menu.component';
+import { AddFeedbackComponent } from './feedback/add-feedback/add-feedback.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -26,7 +28,12 @@ const routes: Routes = [
       { path: 'list_emp', component: EmployeeComponent },
       { path: 'order', component: EmployeeComponent },
       { path: 'topup_card', component: EmployeeComponent },
+      { path: 'add-fdb', component: AddFeedbackComponent },
     ],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 

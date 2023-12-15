@@ -11,6 +11,11 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
+  hide: boolean = true;
+
+  hideUnhide() {
+    this.hide = !this.hide;
+  }
   constructor(
     private authSer: AuthService,
     private userSer: UserService,
@@ -18,6 +23,8 @@ export class AuthComponent {
     private toastSer: NgToastService
   ) {}
   onSubmit(authForm: NgForm) {
+    console.log(authForm.form.value);
+
     this.authSer
       .login(authForm.form.value.username, authForm.form.value.password)
       .subscribe({
@@ -32,8 +39,6 @@ export class AuthComponent {
         },
         error: (err) => {
           if (err.status === 401) {
-            console.log(err.error.error.message);
-
             this.toastSer.error({
               summary: err.error.error.message,
               detail: 'Error logging in.',

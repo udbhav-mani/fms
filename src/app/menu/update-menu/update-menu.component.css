@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Teko&display=swap");
-
+body {
+  --main-bg-color: #c0cecf;
+  --font-color: #003835;
+  --font-color-lt: #c0cecf;
+}
 .date-input {
   margin: 2rem 12rem;
 }
@@ -18,18 +22,16 @@
 }
 
 .popup {
+  color: var(--font-color);
   margin: 70px auto;
   padding: 20px;
-  background: #dcecfb;
+  background: var(--main-bg-color);
   border-radius: 5px;
-  width: 50%;
+  width: 35%;
   position: relative;
   transition: all 5s ease-in-out;
 }
 
-.popup h2 {
-  color: #0d1b2a;
-}
 .popup .close {
   position: absolute;
   top: 20px;
@@ -41,7 +43,7 @@
   color: #333;
 }
 .popup .close:hover {
-  color: #0d1b2a;
+  color: var(--font-color);
 }
 .popup .content {
   max-height: 30%;
@@ -59,26 +61,31 @@
   margin-right: 15px;
 }
 
-.display-6 {
-  font-family: "Teko", sans-serif;
-}
 .form-control {
   flex-grow: 1;
 }
 
-.h3 {
-  font-family: "Merriweather Sans";
-  color: #0d1b2a;
-}
 .btns {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
-.btn {
-  background-color: #1c3b5c;
-  color: rgb(255, 255, 255);
-  font-family: "Merriweather Sans", serif;
+.header-text {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 30px;
 }
 
+input.ng-invalid.ng-touched {
+  border: red 2px solid;
+}
+
+.h5 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.btn-danger {
+  background-color: var(--font-color-lt);
+  color: red;
+}

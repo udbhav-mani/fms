@@ -6,29 +6,14 @@
 
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
 
-.add-button {
-  max-width: 200px;
-  font-family: "Merriweather Sans", sans-serif;
-  font-size: large;
-}
-
-p {
-  font-family: "Teko", sans-serif;
-  color: #0d1b2a;
-}
-.container {
-  color: #e0e1dd;
-  /* background-color: rgba(172, 209, 246, 0.416); */
-  border-radius: 20px;
-}
-.p-2 {
-  border: #0d1b2a 2px solid;
+body {
+  --main-bg-color: #c0cecf;
+  --font-color: #003835;
   font-family: "Merriweather Sans", serif;
-  background-image: linear-gradient(45deg, rgb(44, 79, 117), #6ab4f5);
-  font-size: 1.5rem;
-  border-radius: 10px;
+}
 
-  /* background-color: #415a77;   */
+.container {
+  color: var(--font-color);
 }
 
 .item {
@@ -39,29 +24,9 @@ p {
   font-size: 2rem;
 }
 
-.nav-button {
-  border-radius: 50%;
-  max-width: 50px;
-  max-height: 50px;
-}
-
-.nav-pages {
-  display: flex;
-  margin-top: 2rem;
-  justify-content: space-evenly;
-}
-
-.nav-pages-item {
-  cursor: pointer;
-}
-.nav-pages-item:hover {
-  transform: scale(1.2);
-}
-
 .input-group {
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
   margin-top: 2rem;
 }
 
@@ -103,8 +68,50 @@ table.table-striped.borderless {
   background-color: var(--main-bg-color);
 }
 
-.btn {
+.add-button {
   padding: 0px 8px;
   font-size: 20px;
   /* border-radius: 50%; */
+}
+
+.popup {
+  width: 30%;
+}
+
+.pagi ::ng-deep .ngx-pagination .ng-star-inserted:hover {
+  border-radius: 50px;
+}
+
+.pagi::ng-deep .ngx-pagination .current {
+  background: var(--font-color);
+  color: var(--main-bg-color);
+
+  border-radius: 50px;
+}
+
+.header-text {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 30px;
+  color: var(--font-color);
+}
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 50%;
+  margin-bottom: 16px;
+}
+
+.search-bar {
+  background-color: var(--main-bg-color);
+  border: #003835 1px solid;
+  border-left: 0px;
+}
+.search-bar-icon {
+  background-color: var(--main-bg-color);
+  border: #003835 1px solid;
+  border-right: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }

@@ -15,6 +15,9 @@ export class CriteriaService {
       criteria: new_criteria,
     });
   }
+  get_menu_criteria() {
+    return this.httpClient.get('http://127.0.0.1:8000/feedback/criterias');
+  }
   add_criteria(new_criteria) {
     return this.httpClient.post('http://127.0.0.1:8000/criterias', {
       criteria: new_criteria,

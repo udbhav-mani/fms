@@ -16,9 +16,7 @@ aside {
   background: linear-gradient(210deg, #003835 40%, #c0cecf);
   overflow: hidden;
   border-top: 1.5px var(--font-color-lt) solid;
-  font-family: "PT Sans", sans-serif;
-  font-family: "Roboto Condensed", sans-serif;
-  font-weight: bold;
+  font-family: "Merriweather Sans", serif;
 }
 
 aside a {
@@ -29,7 +27,7 @@ aside a {
   text-decoration: none;
   display: block;
   padding: 12px;
-  text-decoration: none;
+  font-size: 20px;
 }
 
 .active {
@@ -40,11 +38,9 @@ aside a {
 }
 
 aside a:hover {
-  /* color: #0d1b2a; */
   outline: none;
   position: relative;
   color: var(--font-color) !important;
-  /*  */
   background-color: var(--main-bg-color);
   i {
     color: var(--font-color);

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { EmployeeService } from './employee.service';
 import { UserService } from 'src/shared/user.service';
 import { MenuService } from '../menu/menu.service';
+import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee',
@@ -14,13 +16,16 @@ export class EmployeeComponent {
   isFrontDisabled: boolean = false;
   isBackDisabled: boolean = true;
   isUpdateBalanceOpen: boolean = false;
-  amount: number;
+  amount: number = null;
   employeeDetail: any = null;
   userRole: string;
+  searchQuery: string;
   constructor(
     private empSer: EmployeeService,
     private menuSer: MenuService,
-    private userSer: UserService
+    private userSer: UserService,
+    private toastSer: NgToastService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -29,20 +34,15 @@ export class EmployeeComponent {
       this.employees = response;
       console.log(this.employees);
     });
-  }
-  goBack() {
-    this.pageNumber--;
-    this.isFrontDisabled = false;
-    if (this.pageNumber < 2) {
-      this.isBackDisabled = true;
-    }
-  }
-  goAhead() {
-    this.pageNumber++;
-    this.isBackDisabled = false;
-    if (this.pageNumber > this.employees.length / 7) {
-      this.isFrontDisabled = true;
-    }
+
+    this.menuSer.placeOrderChanged.subscribe((data) => {
+      if (!data) {
+        this.empSer.get_employees().subscribe((response) => {
+          this.employees = response;
+          console.log(this.employees);
+        });
+      }
+    });
   }
 
   addBalance(index: number) {
@@ -57,7 +57,28 @@ export class EmployeeComponent {
   }
   updateBalance() {
     if (this.employeeDetail) {
-      console.log(this.amount);
+      let data = {
+        user_id: this.employeeDetail.user_id,
+        amount: this.amount,
+      };
+      this.empSer.update_balance(data).subscribe({
+        next: (response) => {
+          this.amount = null;
+          this.toastSer.success({
+            summary: 'Balance updated succesfully',
+            detail: 'Success',
+          });
+        },
+        error: (err) => {
+          this.amount = null;
+          this.toastSer.error({
+            summary: err.error.error.message,
+            detail: 'An error occured',
+          });
+        },
+      });
+
+
     } else {
       console.log('grpbalance');
     }
@@ -66,5 +87,14 @@ export class EmployeeComponent {
   openPlaceOrder(emp) {
     this.empSer.placeOrderChanged.next(emp);
     this.menuSer.placeOrderChanged.next(true);
+  }
+  filterEmployees(query: string) {
+    if (!query) {
+      return this.employees;
+    }
+    const lowerCaseQuery = query.toLowerCase();
+    return this.employees.filter((emp) => {
+      return emp.username.toLowerCase().includes(lowerCaseQuery);
+    });
   }
 }
