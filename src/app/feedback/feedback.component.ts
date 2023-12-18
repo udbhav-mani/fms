@@ -34,7 +34,6 @@ export class FeedbackComponent {
         }
       },
       error: (err) => {
-        console.log(this.feedbacks);
         if (err.status === 400) {
           this.toastSer.error({
             summary: err.error.error.message,

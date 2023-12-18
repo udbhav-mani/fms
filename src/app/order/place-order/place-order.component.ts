@@ -40,7 +40,7 @@ export class PlaceOrderComponent {
     this.empSer.place_order(data).subscribe({
       next: (response) => {
         this.toastSer.success({
-          summary: 'Balance updated succesfully',
+          summary: 'Order placed succesfully',
           detail: 'Success',
         });
         this.router

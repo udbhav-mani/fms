@@ -25,7 +25,6 @@ export class MenuComponent {
     this.user = this.userSer.user;
     this.userRole = this.userSer.user.role;
     this.menuSer.get_menu('published').subscribe((response) => {
-      console.log(response);
       this.currentMenu = response;
     });
   }

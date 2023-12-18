@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, EMPTY, Subject, catchError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
@@ -18,6 +18,11 @@ export class MenuService {
     return this.httpClient.get('http://127.0.0.1:8000/menu', {
       params: new HttpParams().append('status', status),
     });
+    // .pipe(
+    //   catchError((err) => {
+    //     return EMPTY;
+    //   })
+    // );
   }
   propose_menu(newMenu) {
     return this.httpClient.post('http://127.0.0.1:8000/menu', newMenu);
@@ -30,7 +35,6 @@ export class MenuService {
     if (comments) {
       body['comments'] = comments;
     }
-    console.log(body);
 
     return this.httpClient.put('http://127.0.0.1:8000/menu', body);
   }

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,7 +14,6 @@ import { AuthComponent } from './auth/auth.component';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { ActivatedRouteSnapshot, Router, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { EmployeeComponent } from './employee/employee.component';
@@ -31,10 +29,7 @@ import { RejectMenuComponent } from './menu/review-menu/reject-menu/reject-menu.
 import { ApproveMenuComponent } from './menu/approve-menu/approve-menu.component';
 import { AddFdbCriteriaComponent } from './menu/approve-menu/add-fdb-criteria/add-fdb-criteria.component';
 import { PlaceOrderComponent } from './order/place-order/place-order.component';
-import { ButtonModule } from 'primeng/button';
-import { ToastModule } from 'primeng/toast';
-import { RippleModule } from 'primeng/ripple';
-import { MessageService } from 'primeng/api';
+
 import { NgToastModule } from 'ng-angular-popup';
 import { AddFeedbackComponent } from './feedback/add-feedback/add-feedback.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -72,8 +67,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatInputModule,
     MatToolbarModule,
     MatDialogModule,
-    ButtonModule,
-    RippleModule,
     MatIconModule,
   ],
   providers: [
@@ -83,7 +76,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
       multi: true,
     },
     MatDialog,
-    MessageService,
   ],
   bootstrap: [AppComponent],
 })

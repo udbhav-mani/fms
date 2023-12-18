@@ -15,7 +15,7 @@ export class MenuRequestsComponent {
   textToBeDisplayed: string = '';
   userRole: string;
   pendingMenu: any;
-  rejectedMenu: any;
+  rejectedMenu: any = { comments: ' ' };
   approvedMenu: any;
 
   constructor(private menuSer: MenuService, private userSer: UserService) {}
@@ -37,11 +37,13 @@ export class MenuRequestsComponent {
               this.menuSer.menuState.next('rejected');
             },
             error: (e) => {
-              this.menuSer.get_menu('not published').subscribe((data) => {
-                this.isMenuApproved = true;
-                this.approvedMenu = data;
-
-                this.menuSer.menuState.next('not published');
+              this.menuSer.get_menu('not published').subscribe({
+                next: (data) => {
+                  this.isMenuApproved = true;
+                  this.approvedMenu = data;
+                  this.menuSer.menuState.next('not published');
+                },
+                error: (e) => {},
               });
             },
           });

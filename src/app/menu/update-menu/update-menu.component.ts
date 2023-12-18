@@ -10,7 +10,7 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class UpdateMenuComponent {
   isUpdateMenu: boolean;
-  @Input() rejectedMenu: any;
+  @Input() rejectedMenu: any = { comments: ' ' };
   comments;
   oldItem;
   newItem;

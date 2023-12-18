@@ -29,9 +29,7 @@ export class ProposeMenuComponent {
     delete newMenu.date;
     let items = Object.values(newMenu);
     newMenu = { date: new Date(menuDate), items: items };
-    this.menuSer.propose_menu(newMenu).subscribe((data) => {
-      console.log(data);
-    });
+    this.menuSer.propose_menu(newMenu).subscribe((data) => {});
     this.proposeForm.reset();
     this.menuSer.menuState.next('pending');
     this.closeDialog();
