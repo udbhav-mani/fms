@@ -40,7 +40,6 @@ export class MenuRequestsComponent {
               this.menuSer.get_menu('not published').subscribe((data) => {
                 this.isMenuApproved = true;
                 this.approvedMenu = data;
-                console.log(this.approvedMenu);
 
                 this.menuSer.menuState.next('not published');
               });

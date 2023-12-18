@@ -17,13 +17,7 @@ export class ApproveMenuComponent {
     });
   }
   acceptMenu() {
-    this.menuSer
-      .updateMenuStatus(this.approvedMenu.menu_id, 'published', null)
-      .subscribe((response) => {
-        this.isFdbCriteriaOpen = !this.isFdbCriteriaOpen;
-        // this.menuSer.menuState.next('published');
-        // this.menuSer.approveMenuChanged.next(false);
-      });
+    this.isFdbCriteriaOpen = !this.isFdbCriteriaOpen;
   }
   discardMenu() {
     this.menuSer

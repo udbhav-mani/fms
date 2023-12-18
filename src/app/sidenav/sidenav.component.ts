@@ -46,9 +46,6 @@ export class SidenavComponent {
   }
 
   logout() {
-    this.toastSer.showError();
     this.authSer.logout();
-    localStorage.removeItem('userData');
-    this.router.navigate(['/auth']);
   }
 }

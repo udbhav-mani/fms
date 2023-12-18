@@ -1,4 +1,7 @@
-<div class="fdb-container pb-5" *ngIf="!!feedbacks; else noFeedbackAvailable">
+<div
+  class="fdb-container pb-5"
+  *ngIf="feedbacks.length > 0; else noFeedbackAvailable"
+>
   <div class="fdb-header">
     <h2>
       <span class="header-text">&nbsp; Feedbacks &nbsp;</span>
@@ -13,7 +16,9 @@
         style="cursor: pointer"
       >
         <option value="">All Feedbacks</option>
-        <option *ngFor="let option of feedbackCriteria">{{ option }}</option>
+        <option *ngFor="let option of feedbackCriteria">
+          {{ option | titlecase }}
+        </option>
       </select>
     </div>
 
@@ -30,14 +35,14 @@
         <tbody>
           <tr
             *ngFor="
-              let feedback of filterFeedbacks(selectedFilter) | paginate
+              let feedback of filterFeedbacks() | paginate
                   : {itemsPerPage: 7, currentPage: pageNumber,
                     };
               let i = index
             "
           >
             <th scope="row">{{ i + 1 }}</th>
-            <td>{{ feedback.criteria }}</td>
+            <td>{{ feedback.criteria | titlecase }}</td>
             <td>
               <span *ngFor="let i of getArray(feedback.feedback)" class="stars"
                 ><i class="fa-solid fa-star" style="color: #003835"></i

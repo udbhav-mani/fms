@@ -7,6 +7,7 @@ import { NgToastService } from 'ng-angular-popup';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  timer: any;
   constructor(
     private httpClient: HttpClient,
     private userSer: UserService,
@@ -27,6 +28,7 @@ export class AuthService {
     this.setLoginToken(token, decodedToken);
     this.userSer.user.token = token;
     localStorage.setItem('userData', JSON.stringify(this.userSer.user));
+    this.autoLogout();
   }
 
   autoLogin() {
@@ -41,11 +43,16 @@ export class AuthService {
     }
   }
   logout() {
+    localStorage.removeItem('userData');
+    this.router.navigate(['/auth']);
     this.userSer.user = new UserModel(null, null, '', '', null, '', '');
+    clearTimeout(this.timer);
+    this.toastSer.info({
+      detail: 'Logged out',
+      summary: 'Successfully logged out',
+    });
   }
   setToken(decodedToken) {
-    // console.log(decodedToken);
-
     this.userSer.user.userid = decodedToken.userid;
     this.userSer.user.grpId = decodedToken.grpId;
     if (decodedToken.role.includes(',')) {
@@ -56,11 +63,8 @@ export class AuthService {
     this.userSer.user.expiresIn = new Date(decodedToken.expiresIn);
     this.userSer.user.token = decodedToken.token;
     this.userSer.user.name = decodedToken.name;
-    // console.log(this.userSer.user);
   }
   setLoginToken(token, decodedToken) {
-    // console.log(decodedToken);
-
     this.userSer.user.userid = decodedToken.user_id;
     this.userSer.user.grpId = decodedToken.grp_id;
     if (decodedToken.role.includes(',')) {
@@ -71,7 +75,11 @@ export class AuthService {
     this.userSer.user.expiresIn = new Date(decodedToken.exp * 1000);
     this.userSer.user.token = token;
     this.userSer.user.name = decodedToken.name;
-    // console.log(this.userSer.user);
+  }
+  autoLogout() {
+    this.timer = setTimeout(() => {
+      this.logout();
+    }, 21600000);
   }
 
   getDecodedAccessToken(token: string): any {

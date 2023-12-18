@@ -19,11 +19,14 @@ export class FeedbackComponent {
   constructor(
     private feedbackSer: FeedbackService,
     private toastSer: NgToastService
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.isPageLoading = true;
     this.feedbackSer.get_feedbacks().subscribe({
       next: (response) => {
         this.feedbacks = response;
+
         for (let feedback of this.feedbacks) {
           if (!this.feedbackCriteria.includes(feedback.criteria)) {
             this.feedbackCriteria.push(feedback.criteria);
@@ -31,10 +34,11 @@ export class FeedbackComponent {
         }
       },
       error: (err) => {
+        console.log(this.feedbacks);
         if (err.status === 400) {
           this.toastSer.error({
             summary: err.error.error.message,
-            detail: '',
+            detail: 'Error',
           });
         } else {
           this.toastSer.error({
@@ -46,15 +50,16 @@ export class FeedbackComponent {
     });
     this.isPageLoading = false;
   }
-
-  ngOnInit() {}
   getArray(num: string) {
     return new Array(parseInt(num));
   }
-  filterFeedbacks(criteria: string) {
-    if (!criteria) {
+  filterFeedbacks() {
+    if (!this.selectedFilter) {
       return this.feedbacks;
     }
-    return this.feedbacks.filter((feedback) => feedback.criteria === criteria);
+    return this.feedbacks.filter(
+      (feedback) =>
+        feedback.criteria.toLowerCase() === this.selectedFilter.toLowerCase()
+    );
   }
 }

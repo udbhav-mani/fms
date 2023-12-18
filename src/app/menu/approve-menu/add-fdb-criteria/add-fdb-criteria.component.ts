@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CriteriaService } from 'src/app/criteria.service';
 import { MenuService } from '../../menu.service';
 
@@ -8,6 +8,7 @@ import { MenuService } from '../../menu.service';
   styleUrls: ['./add-fdb-criteria.component.css'],
 })
 export class AddFdbCriteriaComponent {
+  @Input() approvedMenu;
   newCriteria: any;
   criteria: any;
   newCriteriaBeingAdded: boolean = false;
@@ -19,7 +20,6 @@ export class AddFdbCriteriaComponent {
 
   ngOnInit() {
     this.criteriaSer.get_all_criteria().subscribe((response) => {
-      console.log(response);
       this.criteria = response;
       for (let cr of this.criteria) {
         cr['selected'] = false;
@@ -47,26 +47,34 @@ export class AddFdbCriteriaComponent {
   addNewChip() {
     this.newCriteriaBeingAdded = !this.newCriteriaBeingAdded;
   }
-  addNewCriteria() {
-    if (this.newCriteria)
-      this.criteriaSer.add_criteria([this.newCriteria]).subscribe((data) => {
-        console.log(data);
+  addNewCriteria(myForm) {
+    if (myForm.value.newCriteria) {
+      this.criteriaSer
+        .add_criteria([myForm.value.newCriteria])
+        .subscribe((data) => {
+          console.log(data);
+        });
+      this.criteria.push({
+        id: null,
+        criteria: myForm.value.newCriteria,
+        selected: true,
       });
-    this.criteria.push({
-      id: null,
-      criteria: this.newCriteria,
-      selected: true,
-    });
-    this.selectedCriteria.push(this.newCriteria);
-    this.newCriteria = '';
-    this.newCriteriaBeingAdded = !this.newCriteriaBeingAdded;
+      this.selectedCriteria.push(myForm.value.newCriteria);
+      this.newCriteria = '';
+      this.newCriteriaBeingAdded = !this.newCriteriaBeingAdded;
+      myForm.reset();
+    }
   }
-  addFdbCriteria(myForm) {
-    this.criteriaSer
-      .add_menu_criteria(myForm.value.newCriteria)
+  addFdbCriteria() {
+    this.menuSer
+      .updateMenuStatus(this.approvedMenu.menu_id, 'published', null)
       .subscribe((response) => {
-        this.menuSer.menuState.next('published');
-        this.menuSer.approveMenuChanged.next(false);
+        this.criteriaSer
+          .add_menu_criteria(this.selectedCriteria)
+          .subscribe((response) => {
+            this.menuSer.menuState.next('published');
+            this.menuSer.approveMenuChanged.next(false);
+          });
       });
   }
 }

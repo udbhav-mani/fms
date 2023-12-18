@@ -3,6 +3,7 @@ import { Route, Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { EmployeeService } from 'src/app/employee/employee.service';
 import { MenuService } from 'src/app/menu/menu.service';
+import { UserService } from 'src/shared/user.service';
 
 @Component({
   selector: 'app-place-order',
@@ -16,13 +17,13 @@ export class PlaceOrderComponent {
   constructor(
     private menuSer: MenuService,
     private empSer: EmployeeService,
+    private userSer: UserService,
     private toastSer: NgToastService,
     private router: Router
   ) {}
 
   ngOnInit() {
     this.empSer.placeOrderChanged.subscribe((response) => {
-      console.log(response);
       this.currentEmployee = response;
     });
 
@@ -31,11 +32,6 @@ export class PlaceOrderComponent {
     });
   }
   placeOrder() {
-    // this.router
-    //   .navigateByUrl('/home/f_emp', { skipLocationChange: true })
-    //   .then(() => {
-    //     this.router.navigate(['/home/f_emp/order']);
-    //   });
     let data = {
       user_id: this.currentEmployee.user_id,
       amount: 137,
@@ -47,6 +43,21 @@ export class PlaceOrderComponent {
           summary: 'Balance updated succesfully',
           detail: 'Success',
         });
+        this.router
+          .navigateByUrl('/home/' + this.userSer.user.role, {
+            skipLocationChange: true,
+          })
+          .then(() => {
+            if (this.userSer.user.role === 'emp') {
+              this.router.navigate([
+                '/home/' + this.userSer.user.role + '/menu',
+              ]);
+            } else {
+              this.router.navigate([
+                '/home/' + this.userSer.user.role + '/order',
+              ]);
+            }
+          });
       },
       error: (err) => {
         this.toastSer.error({

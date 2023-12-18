@@ -106,3 +106,19 @@ h2 .header-text {
 input.ng-invalid.ng-touched {
   border: red 2px solid;
 }
+
+h3 {
+  margin-top: 60px;
+  text-align: center;
+  color: var(--font-color);
+}
+.empty_cart {
+  width: 400px;
+  /* margin-left: 30%; */
+  margin: 2rem 35%;
+}
+.fdb_done_img {
+  width: 300px;
+  /* margin-left: 30%; */
+  margin: 2rem 35%;
+}

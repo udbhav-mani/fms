@@ -21,19 +21,19 @@
         pattern="^$|^[A-Za-z]+"
       />
       <div class="input-group-append">
-        <button class="btn" type="button" (click)="addNewCriteria()">
+        <button
+          class="btn"
+          type="button"
+          [disabled]="!myForm.valid"
+          (click)="addNewCriteria(myForm)"
+        >
           Add
         </button>
       </div>
     </div>
   </form>
   <div class="btns">
-    <button
-      class="btn"
-      type="button"
-      [disabled]="myForm.invalid"
-      (click)="addFdbCriteria(myForm)"
-    >
+    <button class="btn" type="button" (click)="addFdbCriteria()">
       Add criteria
     </button>
   </div>

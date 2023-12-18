@@ -32,14 +32,12 @@ export class EmployeeComponent {
     this.userRole = this.userSer.user.role;
     this.empSer.get_employees().subscribe((response) => {
       this.employees = response;
-      console.log(this.employees);
     });
 
     this.menuSer.placeOrderChanged.subscribe((data) => {
       if (!data) {
         this.empSer.get_employees().subscribe((response) => {
           this.employees = response;
-          console.log(this.employees);
         });
       }
     });
@@ -77,12 +75,16 @@ export class EmployeeComponent {
           });
         },
       });
-
-
-    } else {
-      console.log('grpbalance');
     }
+
     this.isUpdateBalanceOpen = !this.isUpdateBalanceOpen;
+    this.router
+      .navigateByUrl('/home/' + this.userSer.user.role, {
+        skipLocationChange: true,
+      })
+      .then(() => {
+        this.router.navigate(['/home/' + this.userSer.user.role + '/list_emp']);
+      });
   }
   openPlaceOrder(emp) {
     this.empSer.placeOrderChanged.next(emp);

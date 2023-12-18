@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ProposeMenuDialogComponent } from './propose-menu-dialog/propose-menu-dialog.component';
 import { UserService } from 'src/shared/user.service';
 import { EmployeeService } from '../employee/employee.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-menu',

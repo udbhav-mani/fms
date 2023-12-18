@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MenuService } from '../menu.service';
+import moment from 'moment';
 
 @Component({
   selector: 'app-propose-menu',
@@ -8,14 +9,13 @@ import { MenuService } from '../menu.service';
   styleUrls: ['./propose-menu.component.css'],
 })
 export class ProposeMenuComponent {
+  items: string[] = [''];
   isProposedMenuOpen;
-  currentDate;
+  minDate = moment(new Date()).format('YYYY-MM-DD');
+  maxDate = moment(new Date(Date.now() + 3 * 86400000)).format('YYYY-MM-DD');
 
   constructor(private menuSer: MenuService) {}
   ngOnInit() {
-    this.currentDate = new Date(2011, 11, 22);
-    console.log(this.currentDate);
-
     this.menuSer.proposeMenuChanged.subscribe((data) => {
       this.isProposedMenuOpen = data;
     });
@@ -37,11 +37,10 @@ export class ProposeMenuComponent {
     this.closeDialog();
   }
   closeDialog() {
+    this.items = [''];
     this.isProposedMenuOpen = !this.isProposedMenuOpen;
     this.menuSer.proposeMenuChanged.next(this.isProposedMenuOpen);
   }
-
-  items: string[] = [''];
 
   addItem() {
     this.items.push('');

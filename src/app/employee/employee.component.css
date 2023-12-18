@@ -115,3 +115,11 @@ table.table-striped.borderless {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
+
+.update-btn {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}
+h5 {
+  color: #003835;
+}

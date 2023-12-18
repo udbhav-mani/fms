@@ -16,12 +16,6 @@ export class HomeComponent {
   ) {}
 
   logout() {
-    this.toastSer.info({
-      detail: 'Logged out',
-      summary: 'Successfully logged out',
-    });
     this.authSer.logout();
-    localStorage.removeItem('userData');
-    this.router.navigate(['/auth']);
   }
 }

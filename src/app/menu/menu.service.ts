@@ -30,6 +30,7 @@ export class MenuService {
     if (comments) {
       body['comments'] = comments;
     }
+    console.log(body);
 
     return this.httpClient.put('http://127.0.0.1:8000/menu', body);
   }

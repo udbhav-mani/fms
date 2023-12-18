@@ -23,8 +23,6 @@ export class AuthComponent {
     private toastSer: NgToastService
   ) {}
   onSubmit(authForm: NgForm) {
-    console.log(authForm.form.value);
-
     this.authSer
       .login(authForm.form.value.username, authForm.form.value.password)
       .subscribe({

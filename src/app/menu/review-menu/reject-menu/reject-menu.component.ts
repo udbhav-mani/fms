@@ -31,7 +31,7 @@ export class RejectMenuComponent {
       form.value.newItem +
       ',' +
       form.value.additionalInfo;
-    console.log(comments);
+    console.log('comments + ' + comments);
 
     this.menuSer
       .updateMenuStatus(this.currentMenu.menu_id, 'rejected', comments)

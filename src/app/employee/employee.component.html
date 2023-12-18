@@ -88,7 +88,9 @@
   <div class="popup">
     <h1 class="header-text text-center">Update balance</h1>
     <a class="close" (click)="closeDialog()">&times;</a>
-    <div class="content">
+    <!-- <h5 class="text-center">ID - {{ employeeDetail.user_id }}</h5> -->
+    <div class="content mt-4">
+      <h5 class="text-center">Name: {{ employeeDetail.username }}</h5>
       <div class="input-group mb-3">
         <span class="input-group-text">₹</span>
         <input
@@ -100,7 +102,7 @@
         />
         <div class="input-group-append">
           <button
-            class="btn"
+            class="btn update-btn"
             type="button"
             (click)="updateBalance()"
             [disabled]="amount ? (amount > 0 ? false : true) : true"

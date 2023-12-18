@@ -22,4 +22,9 @@ export class EmployeeService {
   place_order(data) {
     return this.httpClient.post('http://127.0.0.1:8000/orders', data);
   }
+  get_order(user_id, date) {
+    return this.httpClient.get('http://127.0.0.1:8000/orders/' + user_id, {
+      params: new HttpParams().append('date', date),
+    });
+  }
 }
