@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  constructor(private router: Router) {}
+  constructor() {}
   user: UserModel = new UserModel(null, null, '', '', null, '', '');
 
   get token() {

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, EMPTY, Subject, catchError } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { environment } from 'environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
@@ -15,17 +16,12 @@ export class MenuService {
   constructor(private httpClient: HttpClient) {}
 
   get_menu(status: string) {
-    return this.httpClient.get('http://127.0.0.1:8000/menu', {
+    return this.httpClient.get(`${environment.API_URL}/menu`, {
       params: new HttpParams().append('status', status),
     });
-    // .pipe(
-    //   catchError((err) => {
-    //     return EMPTY;
-    //   })
-    // );
   }
   propose_menu(newMenu) {
-    return this.httpClient.post('http://127.0.0.1:8000/menu', newMenu);
+    return this.httpClient.post(`${environment.API_URL}/menu`, newMenu);
   }
   updateMenuStatus(menuId, status, comments) {
     let body = {
@@ -36,7 +32,7 @@ export class MenuService {
       body['comments'] = comments;
     }
 
-    return this.httpClient.put('http://127.0.0.1:8000/menu', body);
+    return this.httpClient.put(`${environment.API_URL}/menu`, body);
   }
   updateMenu(menuId: number, newItem, oldItem) {
     let body = {
@@ -44,6 +40,6 @@ export class MenuService {
       new_item: newItem,
     };
 
-    return this.httpClient.patch(`http://127.0.0.1:8000/menu/${menuId}`, body);
+    return this.httpClient.patch(`${environment.API_URL}/menu/${menuId}`, body);
   }
 }

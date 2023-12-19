@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
+import { environment } from 'environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CriteriaService {
@@ -8,18 +9,18 @@ export class CriteriaService {
   constructor(private httpClient: HttpClient) {}
 
   get_all_criteria() {
-    return this.httpClient.get('http://127.0.0.1:8000/criterias');
+    return this.httpClient.get(`${environment.API_URL}/criterias`);
   }
   add_menu_criteria(new_criteria) {
-    return this.httpClient.post('http://127.0.0.1:8000/feedback/criterias', {
+    return this.httpClient.post(`${environment.API_URL}/feedback/criterias`, {
       criteria: new_criteria,
     });
   }
   get_menu_criteria() {
-    return this.httpClient.get('http://127.0.0.1:8000/feedback/criterias');
+    return this.httpClient.get(`${environment.API_URL}/feedback/criterias`);
   }
   add_criteria(new_criteria) {
-    return this.httpClient.post('http://127.0.0.1:8000/criterias', {
+    return this.httpClient.post(`${environment.API_URL}/criterias`, {
       criteria: new_criteria,
     });
   }

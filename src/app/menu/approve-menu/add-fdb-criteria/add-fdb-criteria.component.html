@@ -6,7 +6,7 @@
       (click)="selectChip(i)"
       [ngStyle]="{ backgroundColor: cr.selected ? '#2f2e41' : '#003835' }"
     >
-      {{ cr.criteria }}
+      {{ cr.criteria | titlecase }}
     </div>
     <div class="chips chip-add text-center" (click)="addNewChip()">+</div>
   </div>

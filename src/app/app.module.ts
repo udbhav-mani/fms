@@ -19,7 +19,6 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ProposeMenuDialogComponent } from './menu/propose-menu-dialog/propose-menu-dialog.component';
 import { MenuRequestsComponent } from './menu/menu-requests/menu-requests.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ProposeMenuComponent } from './menu/propose-menu/propose-menu.component';
@@ -41,7 +40,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MenuComponent,
     FeedbackComponent,
     EmployeeComponent,
-    ProposeMenuDialogComponent,
     MenuRequestsComponent,
     SidenavComponent,
     ProposeMenuComponent,

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuService } from './menu.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ProposeMenuDialogComponent } from './propose-menu-dialog/propose-menu-dialog.component';
+// import { ProposeMenuDialogComponent } from './propose-menu-dialog/propose-menu-dialog.component';
 import { UserService } from 'src/shared/user.service';
 import { EmployeeService } from '../employee/employee.service';
 import { NgxSpinnerService } from 'ngx-spinner';
