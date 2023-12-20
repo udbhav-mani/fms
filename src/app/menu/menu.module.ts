@@ -7,6 +7,15 @@ import { RejectMenuComponent } from './review-menu/reject-menu/reject-menu.compo
 import { UpdateMenuComponent } from './update-menu/update-menu.component';
 import { ProposeMenuComponent } from './propose-menu/propose-menu.component';
 import { MenuComponent } from './menu.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgToastModule } from 'ng-angular-popup';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { AppRoutingModule } from '../app-routing.module';
+import { OrderModule } from '../order/order.module';
+import { AddFdbCriteriaComponent } from './approve-menu/add-fdb-criteria/add-fdb-criteria.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +26,18 @@ import { MenuComponent } from './menu.component';
     ApproveMenuComponent,
     ReviewMenuComponent,
     RejectMenuComponent,
+    AddFdbCriteriaComponent,
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    NgToastModule,
+    NgxPaginationModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    OrderModule,
+  ],
 })
 export class MenuModule {}

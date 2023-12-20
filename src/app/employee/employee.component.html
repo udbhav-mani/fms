@@ -16,6 +16,14 @@
         placeholder="Search by name..."
         [(ngModel)]="searchQuery"
       />
+
+      <span
+        [hidden]="searchQuery == ''"
+        class="close-btn"
+        (click)="clearSearch()"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </span>
     </div>
     <div class="emp-list-data">
       <table class="table table-striped borderless">
@@ -23,7 +31,8 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Username</th>
-            <th scope="col">
+            <th scope="col">Balance</th>
+            <th scope="col" *ngIf="userRole === 'f_emp'">
               {{ userRole === "admin" ? "Balance" : "Topup Card" }}
             </th>
             <th scope="col">
@@ -41,7 +50,7 @@
           >
             <th scope="row">{{ emp.user_id }}</th>
             <td>{{ emp.username }}</td>
-            <td *ngIf="userRole === 'admin'">₹{{ emp.balance | number }}</td>
+            <td>₹{{ emp.balance | number }}</td>
             <td *ngIf="userRole === 'f_emp'">
               <div
                 *ngIf="userRole !== 'admin'"

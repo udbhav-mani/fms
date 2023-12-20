@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+
+import { NgToastService } from 'ng-angular-popup';
+
 import { AuthService } from './auth.service';
 import { UserService } from 'src/shared/user.service';
-import { Router } from '@angular/router';
-import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-auth',

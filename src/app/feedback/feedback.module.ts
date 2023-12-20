@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { NgToastModule } from 'ng-angular-popup';
 import { NgxPaginationModule } from 'ngx-pagination';
-
 import { AppRoutingModule } from '../app-routing.module';
-import { PlaceOrderComponent } from './place-order/place-order.component';
+import { FeedbackComponent } from './feedback.component';
+import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 
 @NgModule({
-  declarations: [PlaceOrderComponent],
+  declarations: [FeedbackComponent, AddFeedbackComponent],
   imports: [
     CommonModule,
     NgToastModule,
@@ -23,6 +23,5 @@ import { PlaceOrderComponent } from './place-order/place-order.component';
     FormsModule,
     HttpClientModule,
   ],
-  exports: [PlaceOrderComponent],
 })
-export class OrderModule {}
+export class FeedbackModule {}

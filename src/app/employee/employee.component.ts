@@ -19,7 +19,7 @@ export class EmployeeComponent {
   amount: number = null;
   employeeDetail: any = null;
   userRole: string;
-  searchQuery: string;
+  searchQuery: string = '';
   constructor(
     private empSer: EmployeeService,
     private menuSer: MenuService,
@@ -98,5 +98,8 @@ export class EmployeeComponent {
     return this.employees.filter((emp) => {
       return emp.username.toLowerCase().includes(lowerCaseQuery);
     });
+  }
+  clearSearch() {
+    this.searchQuery = '';
   }
 }

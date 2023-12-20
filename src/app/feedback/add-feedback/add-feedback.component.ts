@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgToastService } from 'ng-angular-popup';
-import { CriteriaService } from 'src/app/criteria.service';
+import { CriteriaService } from 'src/shared/criteria.service';
 import { FeedbackService } from '../feedback.service';
 import { EmployeeService } from 'src/app/employee/employee.service';
 import { UserService } from 'src/shared/user.service';

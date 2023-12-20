@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { AuthService } from '../auth/auth.service';
 import { UserModel, UserService } from 'src/shared/user.service';
 

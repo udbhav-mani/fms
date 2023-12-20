@@ -16,10 +16,7 @@ export class FeedbackComponent {
   feedbackCriteria: string[] = [];
   selectedFilter;
 
-  constructor(
-    private feedbackSer: FeedbackService,
-    private toastSer: NgToastService
-  ) {}
+  constructor(private feedbackSer: FeedbackService) {}
 
   ngOnInit() {
     this.isPageLoading = true;
@@ -33,19 +30,7 @@ export class FeedbackComponent {
           }
         }
       },
-      error: (err) => {
-        if (err.status === 400) {
-          this.toastSer.error({
-            summary: err.error.error.message,
-            detail: 'Error',
-          });
-        } else {
-          this.toastSer.error({
-            detail: err.error.message,
-            summary: 'Error',
-          });
-        }
-      },
+      error: (err) => {},
     });
     this.isPageLoading = false;
   }

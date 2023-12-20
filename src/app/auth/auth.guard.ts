@@ -16,6 +16,6 @@ export const AuthGuard: CanActivateFn = (
   if (userSer.token) {
     return true;
   } else {
-    router.navigate(['auth']);
+    return router.createUrlTree(['/auth']);
   }
 };

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CriteriaService } from 'src/app/criteria.service';
+import { CriteriaService } from 'src/shared/criteria.service';
 import { MenuService } from '../../menu.service';
 import { NgToastService } from 'ng-angular-popup';
 

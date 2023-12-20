@@ -1,9 +1,12 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserModel, UserService } from 'src/shared/user.service';
+
 import { jwtDecode } from 'jwt-decode';
-import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+
+import { UserModel, UserService } from 'src/shared/user.service';
+import { environment } from 'environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -17,12 +20,14 @@ export class AuthService {
   ngOnInit() {
     this.autoLogin();
   }
+
   login(username: string, password: string) {
-    return this.httpClient.post('http://127.0.0.1:8000/login', {
+    return this.httpClient.post(`${environment.API_URL}/login`, {
       username: username,
       password: password,
     });
   }
+
   loginUser(token: string) {
     let decodedToken = this.getDecodedAccessToken(token);
     this.setLoginToken(token, decodedToken);
@@ -33,7 +38,6 @@ export class AuthService {
 
   autoLogin() {
     let userData = localStorage.getItem('userData');
-
     if (!userData) {
       return;
     } else {
@@ -42,6 +46,7 @@ export class AuthService {
       this.router.navigate(['home/' + this.userSer.user.role + '/menu']);
     }
   }
+
   logout() {
     localStorage.removeItem('userData');
     this.router.navigate(['/auth']);
@@ -52,6 +57,7 @@ export class AuthService {
       summary: 'Successfully logged out',
     });
   }
+
   setToken(decodedToken) {
     this.userSer.user.userid = decodedToken.userid;
     this.userSer.user.grpId = decodedToken.grpId;
