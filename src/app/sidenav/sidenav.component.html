@@ -1,20 +1,23 @@
 <aside>
   <p class="h3">
     Hello,
-    {{ (user.name != "" ? user.name.split(" ")[0] : "User") | titlecase }}
+    {{ user.name.split(" ")[0] | titlecase }}
   </p>
-  <div *ngFor="let i of navigation[role]" class="row justify-content-center h4">
+  <div
+    *ngFor="let navigationItem of navigation[role]"
+    class="row justify-content-center h4"
+  >
     <a
       class="butn"
-      [routerLink]="[i[1]]"
+      [routerLink]="[navigationItem.route]"
       routerLinkActive="active"
       style="cursor: pointer"
     >
-      <i [class]="i[2]"></i>
-      &nbsp;{{ i[0] }}
+      <i [class]="navigationItem.iconClass"></i>
+      &nbsp;{{ navigationItem.label }}
     </a>
   </div>
   <div class="footer">
-    <div class="">&copy;&nbsp; Udbhav Mani</div>
+    <div>&copy;&nbsp;{{ constants.OWNER_NAME }}</div>
   </div>
 </aside>

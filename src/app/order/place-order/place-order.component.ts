@@ -1,10 +1,12 @@
-import { Component, Input } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { NgToastService } from 'ng-angular-popup';
+
 import { EmployeeService } from 'src/app/employee/employee.service';
 import { MenuService } from 'src/app/menu/menu.service';
 import { UserService } from 'src/shared/user.service';
-
+import * as CONSTANTS from 'src/assets/constants';
 @Component({
   selector: 'app-place-order',
   templateUrl: './place-order.component.html',
@@ -13,6 +15,7 @@ import { UserService } from 'src/shared/user.service';
 export class PlaceOrderComponent {
   currentEmployee: any;
   isOrderMenuOpen: boolean = false;
+  constants = CONSTANTS.default;
 
   constructor(
     private menuSer: MenuService,
@@ -34,17 +37,18 @@ export class PlaceOrderComponent {
   placeOrder() {
     let data = {
       user_id: this.currentEmployee.user_id,
-      amount: 137,
+      amount: this.constants.MENU_PRICE,
     };
 
     this.empSer.place_order(data).subscribe({
       next: (response) => {
         this.toastSer.success({
-          summary: 'Order placed succesfully',
+          summary: this.constants.ORDER_SUCCESSFUL,
           detail: 'Success',
         });
+
         this.router
-          .navigateByUrl('/home/' + this.userSer.user.role, {
+          .navigateByUrl(`/home/${this.userSer.user.role}`, {
             skipLocationChange: true,
           })
           .then(() => {

@@ -1,8 +1,3 @@
-* {
-  --main-bg-color: #c0cecf;
-  --font-color: #003835;
-  --font-color-lt: #c0cecf;
-}
 .footer {
   position: absolute;
   bottom: 0px;
@@ -19,9 +14,6 @@ aside {
   font-family: "Merriweather Sans", serif;
 }
 
-aside a {
-  color: var(--font-color);
-}
 aside a {
   color: var(--font-color-lt);
   text-decoration: none;
