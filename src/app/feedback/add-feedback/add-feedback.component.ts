@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+
+import moment from 'moment';
 import { NgToastService } from 'ng-angular-popup';
+
 import { CriteriaService } from 'src/shared/criteria.service';
 import { FeedbackService } from '../feedback.service';
 import { EmployeeService } from 'src/app/employee/employee.service';
 import { UserService } from 'src/shared/user.service';
-import moment from 'moment';
-import { Router } from '@angular/router';
+import * as CONSTANTS from 'src/assets/constants';
 
 @Component({
   selector: 'app-add-feedback',
@@ -14,10 +17,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-feedback.component.css'],
 })
 export class AddFeedbackComponent {
+  constants = CONSTANTS.default;
   selectedRating = [0, 0, 0, 0, 0];
-  fdbCriteria: any;
+  fdbCriteria: MenuCriteria[];
   isOrderPlaced: boolean = true;
   isFeedbackDone: boolean = true;
+
   constructor(
     private criteriaSer: CriteriaService,
     private fdbSer: FeedbackService,
@@ -28,6 +33,42 @@ export class AddFeedbackComponent {
   ) {}
 
   ngOnInit() {
+    this.checkOrderStatus();
+    this.checkFeedbackStatus();
+    this.getFdbCriteria();
+  }
+
+  onSubmitFeedback(feedbackForm: NgForm) {
+    const formVal = feedbackForm.value;
+    let data = [];
+    for (let cr of this.fdbCriteria) {
+      data.push({
+        cr_id: cr.cr_id,
+        feedback: formVal[cr.cr_id],
+        comments: formVal['comment_' + cr.cr_id],
+      });
+    }
+
+    this.fdbSer.add_feedback(data).subscribe({
+      next: (response) => {
+        this.toastSer.success({
+          summary: this.constants.FDB_SUBMITTED,
+          detail: this.constants.FDB_SUBMITTED_DETAIL,
+        });
+      },
+      error: (err) => {
+        this.toastSer.error({
+          summary: err.error.error.message,
+          detail: 'An error occured.',
+        });
+      },
+    });
+
+    feedbackForm.resetForm();
+    this.refreshData();
+  }
+
+  private checkOrderStatus() {
     this.empSer
       .get_order(
         this.userSer.user.userid,
@@ -45,7 +86,9 @@ export class AddFeedbackComponent {
           this.isOrderPlaced = false;
         },
       });
+  }
 
+  private checkFeedbackStatus() {
     this.fdbSer.get_user_feedback(this.userSer.user.userid).subscribe({
       next: (response: any[]) => {
         this.isFeedbackDone = true;
@@ -54,53 +97,34 @@ export class AddFeedbackComponent {
         this.isFeedbackDone = false;
       },
     });
+  }
+
+  private getFdbCriteria() {
     this.criteriaSer.get_menu_criteria().subscribe({
-      next: (response) => {
+      next: (response: MenuCriteria[]) => {
         this.fdbCriteria = response;
       },
       error: (err) => {
         this.toastSer.error({
           summary: err.error.error.message,
-          detail: 'An error occcured',
+          detail: this.constants.ERROR_OCCURED,
         });
       },
     });
   }
 
-  onSubmitFeedback(feedbackForm: NgForm) {
-    const formVal = feedbackForm.value;
-
-    let data = [];
-    for (let cr of this.fdbCriteria) {
-      data.push({
-        cr_id: cr.cr_id,
-        feedback: formVal[cr.cr_id],
-        comments: formVal['comment_' + cr.cr_id],
-      });
-    }
-
-    this.fdbSer.add_feedback(data).subscribe({
-      next: (response) => {
-        this.toastSer.success({
-          summary: 'Feedback submitted successfully!',
-          detail: 'Thank you for your feedback.',
-        });
-      },
-      error: (err) => {
-        this.toastSer.error({
-          summary: err.error.error.message,
-          detail: 'An error occured.',
-        });
-      },
-    });
-
-    feedbackForm.resetForm();
+  private refreshData() {
     this.router
-      .navigateByUrl('/home/' + this.userSer.user.role, {
+      .navigateByUrl(`/home/${this.userSer.user.role}`, {
         skipLocationChange: true,
       })
       .then(() => {
-        this.router.navigate(['/home/' + this.userSer.user.role + '/add-fdb']);
+        this.router.navigate(['/home', this.userSer.user.role, 'add-fdb']);
       });
   }
+}
+
+interface MenuCriteria {
+  cr_id: number;
+  criteria: string;
 }

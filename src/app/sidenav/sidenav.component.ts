@@ -22,7 +22,7 @@ export class SidenavComponent implements OnInit {
   user: UserModel;
   ownerName: string;
 
-  ngOnInit() {
+  ngOnInit(): void {
     const params = this.route.snapshot.params;
     this.role = params['role'];
     this.user = this.userSer.user;
@@ -59,7 +59,7 @@ export class SidenavComponent implements OnInit {
     ],
   };
 
-  logout() {
+  logout(): void {
     this.authSer.logout();
   }
 }

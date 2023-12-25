@@ -4,7 +4,7 @@
 >
   <div class="fdb-header">
     <h2>
-      <span class="header-text">&nbsp; Feedbacks &nbsp;</span>
+      <span class="header-text">&nbsp; {{ constants.FDB_LABEL }} &nbsp;</span>
     </h2>
   </div>
 
@@ -15,7 +15,7 @@
         [(ngModel)]="selectedFilter"
         style="cursor: pointer"
       >
-        <option value="">All Feedbacks</option>
+        <option value="">{{ constants.ALL_FDB_LABEL }}</option>
         <option *ngFor="let option of feedbackCriteria">
           {{ option | titlecase }}
         </option>
@@ -27,9 +27,9 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Criteria</th>
-            <th scope="col">Rating</th>
-            <th scope="col">Reviews</th>
+            <th scope="col">{{ constants.CRITERIA_LABEL }}</th>
+            <th scope="col">{{ constants.RATINGS_LABEL }}</th>
+            <th scope="col">{{ constants.REVIEW_LABEL }}</th>
           </tr>
         </thead>
         <tbody>
@@ -66,11 +66,13 @@
 <ng-template #noFeedbackAvailable>
   <ng-container *ngIf="!isPageLoading">
     <h2>
-      <span class="header-text">&nbsp; No feedbacks available &nbsp;</span>
+      <span class="header-text"
+        >&nbsp; {{ constants.NO_FDB_LABEL }} &nbsp;</span
+      >
     </h2>
     <img src="assets\no_feedbacks.svg" class="no_fdb" alt="" />
     <h2>
-      <span class="header-text">&nbsp; * * * * &nbsp;</span>
+      <span class="header-text">&nbsp;{{ constants.STARS }} &nbsp;</span>
     </h2>
   </ng-container>
 </ng-template>

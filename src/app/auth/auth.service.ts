@@ -7,58 +7,59 @@ import { NgToastService } from 'ng-angular-popup';
 
 import { UserModel, UserService } from 'src/shared/user.service';
 import { environment } from 'environment/environment';
+import * as CONSTANTS from 'src/assets/constants';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   timer: any;
+  constants = CONSTANTS.default;
   constructor(
     private httpClient: HttpClient,
     private userSer: UserService,
     private router: Router,
     private toastSer: NgToastService
   ) {}
-  ngOnInit() {
-    this.autoLogin();
-  }
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<any> {
     return this.httpClient.post(`${environment.API_URL}/login`, {
       username: username,
       password: password,
     });
   }
 
-  loginUser(token: string) {
-    let decodedToken = this.getDecodedAccessToken(token);
+  loginUser(token: string): void {
+    const decodedToken = this.getDecodedAccessToken(token);
     this.setLoginToken(token, decodedToken);
     this.userSer.user.token = token;
     localStorage.setItem('userData', JSON.stringify(this.userSer.user));
     this.autoLogout();
   }
 
-  autoLogin() {
-    let userData = localStorage.getItem('userData');
+  autoLogin(): void {
+    const userData = localStorage.getItem('userData');
     if (!userData) {
       return;
     } else {
-      let decodedToken = JSON.parse(userData);
+      const decodedToken = JSON.parse(userData);
       this.setToken(decodedToken);
-      this.router.navigate(['home/' + this.userSer.user.role + '/menu']);
+      this.router.navigate(['home', this.userSer.user.role, 'menu']);
     }
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('userData');
     this.router.navigate(['/auth']);
     this.userSer.user = new UserModel(null, null, '', '', null, '', '');
     clearTimeout(this.timer);
     this.toastSer.info({
-      detail: 'Logged out',
-      summary: 'Successfully logged out',
+      detail: this.constants.LOG_OUT,
+      summary: this.constants.LOG_OUT_SUMMARY,
     });
   }
 
-  setToken(decodedToken) {
+  setToken(decodedToken: any): void {
+    console.log(decodedToken);
     this.userSer.user.userid = decodedToken.userid;
     this.userSer.user.grpId = decodedToken.grpId;
     if (decodedToken.role.includes(',')) {
@@ -70,7 +71,8 @@ export class AuthService {
     this.userSer.user.token = decodedToken.token;
     this.userSer.user.name = decodedToken.name;
   }
-  setLoginToken(token, decodedToken) {
+  setLoginToken(token: string, decodedToken: LoginToken): void {
+    console.log(decodedToken);
     this.userSer.user.userid = decodedToken.user_id;
     this.userSer.user.grpId = decodedToken.grp_id;
     if (decodedToken.role.includes(',')) {
@@ -95,4 +97,13 @@ export class AuthService {
       return null;
     }
   }
+}
+
+interface LoginToken {
+  sub: string;
+  user_id: number;
+  grp_id: number;
+  role: string;
+  name: string;
+  exp: number;
 }

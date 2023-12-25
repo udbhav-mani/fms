@@ -1,14 +1,16 @@
 <div class="emp-container">
   <div class="emp-header">
     <h2>
-      <span class="header-text">&nbsp; List of employees &nbsp;</span>
+      <span class="header-text"
+        >&nbsp; {{ constants.EMP_LIST_HEADER }} &nbsp;</span
+      >
     </h2>
   </div>
 
   <div class="emp-list-container">
     <div class="input-group mb-3 search">
       <div class="input-group-prepend">
-        <span class="input-group-text search-bar-icon">🔍</span>
+        <span class="input-group-text search-bar-icon">{{ constants.SEARCH_SYMBOL }}</span>
       </div>
       <input
         type="text"
@@ -26,12 +28,12 @@
       </span>
     </div>
     <div class="emp-list-data">
-      <table class="table table-striped borderless">
+      <table class="table table-striped borderless" aria-describedby="empTable">
         <thead>
           <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Username</th>
-            <th scope="col">Balance</th>
+            <th scope="col">{{ constants.ID_LABEL }}</th>
+            <th scope="col">{{ constants.USERNAME_LABEL }}</th>
+            <th scope="col">{{ constants.BALANCE_LABEL }}</th>
             <th scope="col" *ngIf="userRole === 'f_emp'">
               {{ userRole === "admin" ? "Balance" : "Topup Card" }}
             </th>
@@ -88,20 +90,20 @@
       ></pagination-controls>
     </div>
   </div>
-  <!-- <h2>
-    <span class="header-text">&nbsp; * * * * * &nbsp;</span>
-  </h2> -->
 </div>
 
 <div id="popup1" class="overlay" *ngIf="isUpdateBalanceOpen">
   <div class="popup">
-    <h1 class="header-text text-center">Update balance</h1>
+    <h1 class="header-text text-center">
+      {{ constants.UPDATE_BALANCE_LABEL }}
+    </h1>
     <a class="close" (click)="closeDialog()">&times;</a>
-    <!-- <h5 class="text-center">ID - {{ employeeDetail.user_id }}</h5> -->
     <div class="content mt-4">
-      <h5 class="text-center">Name: {{ employeeDetail.username }}</h5>
+      <h5 class="text-center">
+        {{ constants.NAME_LABEL }}{{ employeeDetail.username }}
+      </h5>
       <div class="input-group mb-3">
-        <span class="input-group-text">₹</span>
+        <span class="input-group-text">{{ constants.RUPEE_SYMBOL }}</span>
         <input
           type="number"
           min="1"
@@ -116,7 +118,7 @@
             (click)="updateBalance()"
             [disabled]="amount ? (amount > 0 ? false : true) : true"
           >
-            Update
+            {{ constants.UPDATE_BALANCE_LABEL }}
           </button>
         </div>
       </div>

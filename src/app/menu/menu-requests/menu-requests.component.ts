@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../menu.service';
 import { UserService } from 'src/shared/user.service';
+
+
 
 @Component({
   selector: 'app-menu-requests',
   templateUrl: './menu-requests.component.html',
   styleUrls: ['./menu-requests.component.css'],
 })
-export class MenuRequestsComponent {
+export class MenuRequestsComponent implements OnInit {
   isMenuProposed: boolean;
   isMenuRejected: boolean;
   isMenuApproved: boolean;

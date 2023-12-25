@@ -9,7 +9,7 @@ export class FeedbackService {
   get_feedbacks() {
     return this.httpClient.get(`${environment.API_URL}/feedback`, {});
   }
-  get_user_feedback(user_id) {
+  get_user_feedback(user_id: number) {
     return this.httpClient.get(`${environment.API_URL}/feedback`, {
       params: new HttpParams().append('user_id', user_id),
     });

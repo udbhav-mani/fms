@@ -7,8 +7,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&display=swap");
 
 body {
-  --main-bg-color: #c0cecf;
-  --font-color: #003835;
   font-family: "Merriweather Sans", serif;
 }
 
@@ -71,7 +69,6 @@ table.table-striped.borderless {
 .add-button {
   padding: 0px 8px;
   font-size: 20px;
-  /* border-radius: 50%; */
 }
 
 .popup {

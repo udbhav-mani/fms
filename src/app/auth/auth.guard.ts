@@ -1,16 +1,9 @@
 import { inject } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivateFn,
-  Router,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { CanActivateFn, Router, UrlTree } from '@angular/router';
+
 import { UserService } from 'src/shared/user.service';
 
-export const AuthGuard: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-) => {
+export const AuthGuard: CanActivateFn = (): boolean | UrlTree => {
   const router = inject(Router);
   const userSer = inject(UserService);
   if (userSer.token) {

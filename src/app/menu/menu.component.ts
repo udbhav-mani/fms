@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
+
 import { MenuService } from './menu.service';
-import { MatDialog } from '@angular/material/dialog';
-// import { ProposeMenuDialogComponent } from './propose-menu-dialog/propose-menu-dialog.component';
-import { UserService } from 'src/shared/user.service';
+import { UserModel, UserService } from 'src/shared/user.service';
 import { EmployeeService } from '../employee/employee.service';
-import { NgxSpinnerService } from 'ngx-spinner';
+import * as CONSTANTS from 'src/assets/constants';
 
 @Component({
   selector: 'app-menu',
@@ -12,9 +11,10 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
+  constants = CONSTANTS.default;
   currentMenu: any = { menu_id: '', date: '', items: [] };
   userRole: string;
-  user;
+  user: UserModel;
   constructor(
     private menuSer: MenuService,
     private userSer: UserService,

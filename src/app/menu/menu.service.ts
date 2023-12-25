@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+
 import { BehaviorSubject, Subject } from 'rxjs';
+
 import { environment } from 'environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {
-  proposeMenuChanged = new BehaviorSubject(false);
-  updateMenuChanged = new BehaviorSubject(false);
-  reviewMenuChanged = new BehaviorSubject(false);
-  rejectMenuChanged = new BehaviorSubject(false);
-  approveMenuChanged = new BehaviorSubject(false);
-  placeOrderChanged = new BehaviorSubject(false);
+  proposeMenuChanged = new BehaviorSubject<boolean>(false);
+  updateMenuChanged = new BehaviorSubject<boolean>(false);
+  reviewMenuChanged = new BehaviorSubject<boolean>(false);
+  rejectMenuChanged = new BehaviorSubject<boolean>(false);
+  approveMenuChanged = new BehaviorSubject<boolean>(false);
+  placeOrderChanged = new BehaviorSubject<boolean>(false);
   menuState = new Subject();
 
   constructor(private httpClient: HttpClient) {}
@@ -20,10 +22,10 @@ export class MenuService {
       params: new HttpParams().append('status', status),
     });
   }
-  propose_menu(newMenu) {
+  propose_menu(newMenu: NewMenu) {
     return this.httpClient.post(`${environment.API_URL}/menu`, newMenu);
   }
-  updateMenuStatus(menuId, status, comments) {
+  updateMenuStatus(menuId: number, status: string, comments: string) {
     let body = {
       menu_id: menuId,
       status: status,
@@ -34,7 +36,7 @@ export class MenuService {
 
     return this.httpClient.put(`${environment.API_URL}/menu`, body);
   }
-  updateMenu(menuId: number, newItem, oldItem) {
+  updateMenu(menuId: number, newItem: string, oldItem: string) {
     let body = {
       old_item: oldItem,
       new_item: newItem,
@@ -42,4 +44,9 @@ export class MenuService {
 
     return this.httpClient.patch(`${environment.API_URL}/menu/${menuId}`, body);
   }
+}
+
+interface NewMenu {
+  date: string;
+  items: string[];
 }

@@ -1,9 +1,14 @@
 <div class="header">
-  <div class="icon"><img src="assets\Fiesta-lt.png" alt="" /></div>
+  <div class="icon"><img src="assets/Fiesta-lt.png" alt="" /></div>
   <div class="logout-icon">
-    <img class="logout-icon-img" src="assets\logout.png" (click)="logout()" />
+    <img
+      class="logout-icon-img"
+      src="assets/logout.png"
+      (click)="logout()"
+      alt="Logout-img"
+    />
   </div>
-  <div class="help">Logout</div>
+  <div class="help">{{ constants.LOGOUT_LABEL }}</div>
 </div>
 <div class="main-container">
   <div class="sidenav" opened><app-sidenav></app-sidenav></div>

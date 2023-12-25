@@ -1,7 +1,4 @@
 body {
-  --main-bg-color: #c0cecf;
-  --font-color: #003835;
-  --font-color-lt: #c0cecf;
   font-family: "Kalnia", serif;
 }
 
@@ -44,7 +41,6 @@ body {
   bottom: -80px;
 }
 form {
-  /* height: 520px; */
   width: 400px;
 }
 form * {

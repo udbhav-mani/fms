@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+
 import { AuthService } from '../auth/auth.service';
-import { NgToastService } from 'ng-angular-popup';
+import * as CONSTANTS from 'src/assets/constants';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +9,10 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  constructor(
-    private router: Router,
-    private authSer: AuthService,
-    private toastSer: NgToastService
-  ) {}
+  constants = CONSTANTS.default;
+  constructor(private authSer: AuthService) {}
 
-  logout() {
+  logout(): void {
     this.authSer.logout();
   }
 }

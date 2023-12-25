@@ -19,10 +19,14 @@
       </ul>
     </div>
     <div class="btns" *ngIf="userRole === 'emp'">
-      <button class="btn" (click)="openPlaceOrder()">Place Order</button>
+      <button class="btn" (click)="openPlaceOrder()">
+        {{ constants.PLACE_ORDER_HEADER }}
+      </button>
     </div>
 
-    <h2><span>&nbsp; * * * * * &nbsp;</span></h2>
+    <h2>
+      <span>&nbsp; {{ constants.STARS }} &nbsp;</span>
+    </h2>
   </div>
   <app-place-order></app-place-order>
 </div>

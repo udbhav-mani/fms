@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { NgToastService } from 'ng-angular-popup';
+
 import { EmployeeService } from './employee.service';
 import { UserService } from 'src/shared/user.service';
 import { MenuService } from '../menu/menu.service';
-import { NgToastService } from 'ng-angular-popup';
-import { Router } from '@angular/router';
+import * as CONSTANTS from 'src/assets/constants';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
   styleUrls: ['./employee.component.css'],
 })
-export class EmployeeComponent {
+export class EmployeeComponent implements OnInit {
   employees: any;
   pageNumber: number = 1;
   isFrontDisabled: boolean = false;
@@ -20,6 +23,8 @@ export class EmployeeComponent {
   employeeDetail: any = null;
   userRole: string;
   searchQuery: string = '';
+  constants = CONSTANTS.default;
+
   constructor(
     private empSer: EmployeeService,
     private menuSer: MenuService,
@@ -28,7 +33,7 @@ export class EmployeeComponent {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userRole = this.userSer.user.role;
     this.empSer.get_employees().subscribe((response) => {
       this.employees = response;
@@ -43,17 +48,17 @@ export class EmployeeComponent {
     });
   }
 
-  addBalance(index: number) {
+  addBalance(index: number): void {
     if (index >= 0) {
-      this.employeeDetail = this.employees[index];
+      this.employeeDetail = this.employees[(this.pageNumber - 1) * 7 + index];
     }
     this.isUpdateBalanceOpen = !this.isUpdateBalanceOpen;
   }
-  closeDialog() {
+  closeDialog(): void {
     this.isUpdateBalanceOpen = !this.isUpdateBalanceOpen;
     this.employeeDetail = null;
   }
-  updateBalance() {
+  updateBalance(): void {
     if (this.employeeDetail) {
       let data = {
         user_id: this.employeeDetail.user_id,

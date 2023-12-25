@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
-import { MenuService } from '../menu.service';
-import { delay } from 'rxjs';
+
 import { NgToastService } from 'ng-angular-popup';
+
+import { MenuService } from '../menu.service';
+import * as CONSTANTS from 'src/assets/constants';
 
 @Component({
   selector: 'app-update-menu',
@@ -9,16 +11,17 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./update-menu.component.css'],
 })
 export class UpdateMenuComponent {
+  constants = CONSTANTS.default;
   isUpdateMenu: boolean;
   @Input() rejectedMenu: any = { comments: ' ' };
-  comments;
-  oldItem;
-  newItem;
+  comments: string;
+  oldItem: string;
+  newItem: string;
   newItemAdmin: string = '';
   isDiscarded: boolean = false;
 
   constructor(private menuSer: MenuService, private toastSer: NgToastService) {}
-  ngOnInit() {
+  ngOnInit(): void {
     this.menuSer.updateMenuChanged.subscribe((data) => {
       this.isUpdateMenu = data;
       this.comments = this.rejectedMenu.comments.split(',');
@@ -28,7 +31,7 @@ export class UpdateMenuComponent {
     });
   }
 
-  approveMenu() {
+  approveMenu(): void {
     this.menuSer
       .updateMenu(this.rejectedMenu.menu_id, this.newItem, this.oldItem)
       .subscribe((response) => {});
@@ -37,11 +40,11 @@ export class UpdateMenuComponent {
     this.menuSer.updateMenuChanged.next(false);
   }
 
-  unapproveMenu() {
+  unapproveMenu(): void {
     this.isDiscarded = !this.isDiscarded;
   }
 
-  discardMenu() {
+  discardMenu(): void {
     this.menuSer
       .updateMenuStatus(this.rejectedMenu.menu_id, 'discarded', null)
       .subscribe({
@@ -49,23 +52,23 @@ export class UpdateMenuComponent {
           this.menuSer.menuState.next('discarded');
           this.menuSer.updateMenuChanged.next(false);
           this.toastSer.success({
-            summary: 'Menu Discarded successfully.',
-            detail: 'Success',
+            summary: this.constants.MENU_DISCARDED_SUCCESS,
+            detail: this.constants.SUCCESS_MESSAGE,
           });
         },
         error: (err) => {
           this.toastSer.error({
             summary: err.error.error.message,
-            detail: 'An error occured.',
+            detail: this.constants.ERROR_OCCURED,
           });
         },
       });
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.menuSer.updateMenuChanged.next(false);
   }
-  onSubmit() {
+  onSubmit(): void {
     this.menuSer
       .updateMenu(this.rejectedMenu.menu_id, this.newItemAdmin, this.oldItem)
       .subscribe({
@@ -73,14 +76,14 @@ export class UpdateMenuComponent {
           this.menuSer.menuState.next('pending');
           this.menuSer.updateMenuChanged.next(false);
           this.toastSer.success({
-            summary: 'New Menu suggested successfully.',
-            detail: 'Success',
+            summary: this.constants.MENU_SUGGESTED_SUCCESS,
+            detail: this.constants.SUCCESS_MESSAGE,
           });
         },
         error: (err) => {
           this.toastSer.error({
             summary: err.error.error.message,
-            detail: 'An error occured.',
+            detail: this.constants.ERROR_OCCURED,
           });
         },
       });

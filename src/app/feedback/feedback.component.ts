@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+
 import { FeedbackService } from './feedback.service';
-import { NgToastService } from 'ng-angular-popup';
+import * as CONSTANTS from 'src/assets/constants';
 
 @Component({
   selector: 'app-feedback',
@@ -8,6 +9,7 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./feedback.component.css'],
 })
 export class FeedbackComponent {
+  constants = CONSTANTS.default;
   feedbacks: any = [];
   pageNumber: number = 1;
   isFrontDisabled: boolean = false;

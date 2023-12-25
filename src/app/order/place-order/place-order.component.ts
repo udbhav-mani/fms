@@ -1,20 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { NgToastService } from 'ng-angular-popup';
-
 import { EmployeeService } from 'src/app/employee/employee.service';
 import { MenuService } from 'src/app/menu/menu.service';
 import { UserService } from 'src/shared/user.service';
 import * as CONSTANTS from 'src/assets/constants';
+
 @Component({
   selector: 'app-place-order',
   templateUrl: './place-order.component.html',
   styleUrls: ['./place-order.component.css'],
 })
-export class PlaceOrderComponent {
-  currentEmployee: any;
-  isOrderMenuOpen: boolean = false;
+export class PlaceOrderComponent implements OnInit {
+  currentEmployee: EmployeeResponse;
+  isOrderMenuOpen = false;
   constants = CONSTANTS.default;
 
   constructor(
@@ -25,8 +25,8 @@ export class PlaceOrderComponent {
     private router: Router
   ) {}
 
-  ngOnInit() {
-    this.empSer.placeOrderChanged.subscribe((response) => {
+  ngOnInit(): void {
+    this.empSer.placeOrderChanged.subscribe((response: EmployeeResponse) => {
       this.currentEmployee = response;
     });
 
@@ -34,8 +34,9 @@ export class PlaceOrderComponent {
       this.isOrderMenuOpen = data;
     });
   }
-  placeOrder() {
-    let data = {
+
+  placeOrder(): void {
+    const data = {
       user_id: this.currentEmployee.user_id,
       amount: this.constants.MENU_PRICE,
     };
@@ -44,36 +45,41 @@ export class PlaceOrderComponent {
       next: (response) => {
         this.toastSer.success({
           summary: this.constants.ORDER_SUCCESSFUL,
-          detail: 'Success',
+          detail: this.constants.SUCCESS_MESSAGE,
         });
-
-        this.router
-          .navigateByUrl(`/home/${this.userSer.user.role}`, {
-            skipLocationChange: true,
-          })
-          .then(() => {
-            if (this.userSer.user.role === 'emp') {
-              this.router.navigate([
-                '/home/' + this.userSer.user.role + '/menu',
-              ]);
-            } else {
-              this.router.navigate([
-                '/home/' + this.userSer.user.role + '/order',
-              ]);
-            }
-          });
+        this.navigateBack();
       },
       error: (err) => {
         this.toastSer.error({
           summary: err.error.error.message,
-          detail: 'An error occured',
+          detail: this.constants.ERROR_MESSAGE,
         });
       },
     });
+
     this.closeDialog();
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.menuSer.placeOrderChanged.next(false);
   }
+
+  private navigateBack(): void {
+    const role = this.userSer.user.role;
+    const homePath = `/home/${role}`;
+
+    this.router
+      .navigateByUrl(homePath, { skipLocationChange: true })
+      .then(() => {
+        const targetPath =
+          role === 'emp' ? '/home/emp/menu' : '/home/admin/order';
+        this.router.navigate([targetPath]);
+      });
+  }
+}
+
+interface EmployeeResponse {
+  user_id: number;
+  balance: number;
+  username: string;
 }

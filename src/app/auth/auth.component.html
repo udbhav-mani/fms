@@ -1,14 +1,16 @@
 <body>
   <header>
-    <img src="assets\Fiesta-logo.png" alt="" class="logo-img" />
+    <img src="assets/Fiesta-logo.png" alt="Fiesta Logo" class="logo-img" />
   </header>
 
-  <div class="main-div">
-    <div class="form-div">
+  <main class="main-div">
+    <section class="form-div">
       <form #authForm="ngForm">
-        <h2>Welcome</h2>
+        <h2>{{ constants.WELCOME }}</h2>
 
-        <label for="username">Username</label>
+        <label for="username" aria-label="Username">{{
+          constants.USERNAME_LABEL
+        }}</label>
         <div class="input-container">
           <i class="fa fa-user icon"></i>
           <input
@@ -22,7 +24,9 @@
           />
         </div>
 
-        <label for="password">Password</label>
+        <label for="password" aria-label="Password">{{
+          constants.PASSWORD_LABEL
+        }}</label>
         <div class="input-container">
           <i class="fa fa-key icon"></i>
           <input
@@ -35,9 +39,9 @@
           />
           <div (click)="hideUnhide()">
             <i class="fa-solid fa-eye" *ngIf="hide; else notHidden"></i>
-            <ng-template #notHidden
-              ><i class="fa-solid fa-eye-slash"></i
-            ></ng-template>
+            <ng-template #notHidden>
+              <i class="fa-solid fa-eye-slash"></i>
+            </ng-template>
           </div>
         </div>
 
@@ -46,12 +50,12 @@
           class="btn"
           (click)="onSubmit(authForm)"
         >
-          Log In
+          {{ constants.LOG_IN_BTN }}
         </button>
       </form>
-    </div>
-    <div class="div-img">
-      <img src="\assets\login-img.svg" alt="" />
-    </div>
-  </div>
+    </section>
+    <section class="div-img">
+      <img src="/assets/login-img.svg" alt="Login Image" />
+    </section>
+  </main>
 </body>

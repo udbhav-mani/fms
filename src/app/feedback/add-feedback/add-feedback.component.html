@@ -1,15 +1,17 @@
 <div class="fdb-container pb-5">
   <div class="fdb-header">
     <h2>
-      <span class="header-text">&nbsp; Add feedback &nbsp;</span>
+      <span class="header-text"
+        >&nbsp; {{ constants.ADD_FDB_LABEL }} &nbsp;</span
+      >
     </h2>
 
     <div class="fdb-content" *ngIf="isOrderPlaced; else placeOrder">
       <ng-container *ngIf="!isFeedbackDone; else feedbackDone">
         <div class="fdb-criteria-header mb-3">
-          <div class="w-15">Criteria</div>
-          <div class="w-25 text-center">Ratings(Out of 5)</div>
-          <div class="w-25 text-center">Reviews</div>
+          <div class="w-15">{{ constants.CRITERIA_LABEL }}</div>
+          <div class="w-25 text-center">{{ constants.RATINGS_LABEL }}</div>
+          <div class="w-25 text-center">{{ constants.REVIEW_LABEL }}</div>
         </div>
         <form #feedbackForm="ngForm" (submit)="onSubmitFeedback(feedbackForm)">
           <div *ngFor="let criteria of fdbCriteria">
@@ -43,7 +45,7 @@
               type="submit"
               [disabled]="feedbackForm.invalid"
             >
-              Submit
+              {{ constants.SUBMIT_LABEL }}
             </button>
           </div>
         </form>
@@ -52,17 +54,17 @@
 
     <ng-template #placeOrder>
       <img src="assets\empty_cart.svg" class="empty_cart" alt="" />
-      <h3>Please place an order before giving feedback</h3>
+      <h3>{{ constants.ORDER_NOT_PLACED }}</h3>
       <h2>
-        <span class="header-text mt-5"> * * * * * &nbsp;</span>
+        <span class="header-text mt-5">{{ constants.STARS }}&nbsp;</span>
       </h2>
     </ng-template>
 
     <ng-template #feedbackDone>
       <img src="assets\already_feedback.svg" class="fdb_done_img" alt="" />
-      <h3>You have already given feedback, Thank You!</h3>
+      <h3>{{ constants.FDB_GIVEN_LABEL }}</h3>
       <h2>
-        <span class="header-text mt-5"> * * * * * &nbsp;</span>
+        <span class="header-text mt-5">{{ constants.STARS }}&nbsp;</span>
       </h2>
     </ng-template>
   </div>
