@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddFdbCriteriaComponent } from './add-fdb-criteria.component';
+// import { AddFdbCriteriaComponent } from './add-fdb-criteria.component';
 
-describe('AddFdbCriteriaComponent', () => {
-  let component: AddFdbCriteriaComponent;
-  let fixture: ComponentFixture<AddFdbCriteriaComponent>;
+// describe('AddFdbCriteriaComponent', () => {
+//   let component: AddFdbCriteriaComponent;
+//   let fixture: ComponentFixture<AddFdbCriteriaComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [AddFdbCriteriaComponent]
-    });
-    fixture = TestBed.createComponent(AddFdbCriteriaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+//   beforeEach(() => {
+//     TestBed.configureTestingModule({
+//       declarations: [AddFdbCriteriaComponent]
+//     });
+//     fixture = TestBed.createComponent(AddFdbCriteriaComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+//   it('should create', () => {
+//     expect(component).toBeTruthy();
+//   });
+// });

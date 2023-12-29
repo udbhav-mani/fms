@@ -41,4 +41,6 @@ export default {
   LOGOUT_LABEL: 'Logout',
   MENU_SUGGESTED_SUCCESS: 'New Menu suggested successfully.',
   MENU_DISCARDED_SUCCESS: 'Menu Discarded successfully.',
+  ADD_BTN_LABEL: 'Add',
+  ADD_CRITERIA_LABEL: 'Add Criteria',
 };

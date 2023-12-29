@@ -64,7 +64,7 @@ export class PlaceOrderComponent implements OnInit {
     this.menuSer.placeOrderChanged.next(false);
   }
 
-  private navigateBack(): void {
+  navigateBack(): void {
     const role = this.userSer.user.role;
     const homePath = `/home/${role}`;
 
@@ -78,7 +78,7 @@ export class PlaceOrderComponent implements OnInit {
   }
 }
 
-interface EmployeeResponse {
+export interface EmployeeResponse {
   user_id: number;
   balance: number;
   username: string;

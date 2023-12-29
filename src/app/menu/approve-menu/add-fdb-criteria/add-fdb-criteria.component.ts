@@ -1,7 +1,11 @@
 import { Component, Input } from '@angular/core';
+
+import { NgToastService } from 'ng-angular-popup';
+
 import { CriteriaService } from 'src/shared/criteria.service';
 import { MenuService } from '../../menu.service';
-import { NgToastService } from 'ng-angular-popup';
+import * as CONSTANTS from 'src/assets/constants';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-fdb-criteria',
@@ -9,6 +13,7 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./add-fdb-criteria.component.css'],
 })
 export class AddFdbCriteriaComponent {
+  constants = CONSTANTS.default;
   @Input() approvedMenu;
   newCriteria: any;
   criteria: any;
@@ -49,7 +54,7 @@ export class AddFdbCriteriaComponent {
   addNewChip() {
     this.newCriteriaBeingAdded = !this.newCriteriaBeingAdded;
   }
-  addNewCriteria(myForm) {
+  addNewCriteria(myForm: NgForm) {
     if (myForm.value.newCriteria) {
       this.criteriaSer
         .add_criteria([myForm.value.newCriteria])

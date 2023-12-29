@@ -27,14 +27,14 @@
           [disabled]="!myForm.valid"
           (click)="addNewCriteria(myForm)"
         >
-          Add
+          {{ constants.ADD_BTN_LABEL }}
         </button>
       </div>
     </div>
   </form>
   <div class="btns">
     <button class="btn" type="button" (click)="addFdbCriteria()">
-      Add criteria
+      {{ constants.ADD_CRITERIA_LABEL }}
     </button>
   </div>
 </div>
